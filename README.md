@@ -48,6 +48,7 @@ python -m http.server 8080
 │   ├── lab4-sqli.html
 │   ├── lab5-bruteforce.html
 │   └── lab6-crypto.html
+├── publier-github.ps1
 └── .github/workflows/pages.yml
 ```
 
@@ -65,7 +66,26 @@ Voir [SECURITY.md](SECURITY.md) pour la politique de signalement.
 
 ## Publier sur GitHub Pages
 
-### Méthode automatique (recommandée)
+### Méthode automatique en une commande
+
+Le script `publier-github.ps1` crée le dépôt public, pousse le code, active GitHub Pages et suit le déploiement. Il ne stocke jamais le jeton sur le disque.
+
+1. Créez un **jeton personnel GitHub** (classique) avec les droits `repo` et `workflow` : <https://github.com/settings/tokens>.
+2. Dans le dossier du projet, lancez :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\publier-github.ps1
+```
+
+3. Saisissez votre compte (`abdounh` par défaut), le nom du dépôt (`hacklab-academy` par défaut), puis collez le jeton dans l'invite masquée.
+
+Le site est ensuite publié à l'adresse :
+
+```text
+https://VOTRE_COMPTE.github.io/hacklab-academy/
+```
+
+### Méthode manuelle
 
 Le workflow `.github/workflows/pages.yml` déploie automatiquement le site à chaque push sur `main`.
 
@@ -79,12 +99,6 @@ git add .
 git commit -m "Initial release of HackLab Academy"
 git remote add origin https://github.com/VOTRE_COMPTE/hacklab-academy.git
 git push -u origin main
-```
-
-Le site sera accessible à l'adresse :
-
-```text
-https://VOTRE_COMPTE.github.io/hacklab-academy/
 ```
 
 ### Avec GitHub CLI
