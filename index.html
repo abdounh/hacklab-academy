@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackLab Academy — Apprendre le pentest de zéro à expert</title>
+  <meta name="description" content="Un parcours structuré pour apprendre la cybersécurité offensive : cours ordonnés du débutant au pro, labs interactifs et ressources vérifiées. Gratuit, sans inscription.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:title" content="HackLab Academy — Apprendre le pentest de zéro à expert">
+  <meta property="og:description" content="Parcours débutant → pro, 6 labs interactifs et un catalogue de cours triés par niveau.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="parcours.html">Parcours</a>
+        <a href="cours.html">Cours</a>
+        <a href="labs.html">Labs</a>
+        <a href="ressources.html">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="parcours.html">Commencer</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="kicker">Plateforme d'apprentissage · Sécurité offensive</p>
+            <h1>
+              <span class="line">De zéro à</span>
+              <span class="line"><span class="text-gradient">pentester.</span></span>
+            </h1>
+            <p class="lead">Un parcours ordonné, des labs concrets et des ressources triées pour apprendre le pentest sans sauter d'étapes. La théorie au bon moment, la pratique immédiatement après.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="parcours.html">
+                Démarrer le parcours
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="labs.html">
+                Explorer les labs
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18s-5-2-5-7V6l8-3 8 3v5c0 5-5 7-5 7l-3 2-3-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m10 10 2 2 3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+
+            <div class="hero-meta">
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>100 % gratuit</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Sans inscription</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Labs dans le navigateur</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="terminal">
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-title">hacklab — bash</span>
+              </div>
+              <div class="terminal-body">
+                <p class="t-line t-erase"><span class="t-prompt">analyste@hacklab</span>:<span class="t-path">~</span>$ <span class="t-cmd">whoami</span></p>
+                <p class="t-line t-muted t-erase" style="--delay:.15s">futur_pentester</p>
+                <p class="t-line t-erase" style="--delay:.3s"><span class="t-prompt">analyste@hacklab</span>:<span class="t-path">~</span>$ <span class="t-cmd">./start --parcours debutant</span></p>
+                <p class="t-line t-ok t-erase" style="--delay:.45s">[+] Chargement des fondamentaux… OK</p>
+                <p class="t-line t-ok t-erase" style="--delay:.6s">[+] 6 labs interactifs détectés</p>
+                <p class="t-line t-ok t-erase" style="--delay:.75s">[+] 40 ressources ordonnées par niveau</p>
+                <p class="t-line t-warn t-erase" style="--delay:.9s">[i] Règle n°1 : autorisation avant toute action.</p>
+                <p class="t-line t-erase" style="--delay:1.05s"><span class="t-prompt">analyste@hacklab</span>:<span class="t-path">~</span>$ <span class="cursor" aria-hidden="true"></span></p>
+              </div>
+            </div>
+            <div class="status-row">
+              <span class="status-chip"><i></i>Parcours : 4 phases</span>
+              <span class="status-chip"><i></i>Labs : 6 disponibles</span>
+              <span class="status-chip"><i></i>Données : 0 collectée</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats reveal" aria-label="Chiffres clés">
+          <div class="stat"><strong>04</strong><span>Phases progressives</span></div>
+          <div class="stat"><strong>06</strong><span>Labs interactifs</span></div>
+          <div class="stat"><strong>40<span>+</span></strong><span>Ressources triées</span></div>
+          <div class="stat"><strong>0<span>€</span></strong><span>Pour commencer</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--bordered" id="parcours">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">La feuille de route</p>
+            <h2>Un chemin balisé, pas une liste de liens.</h2>
+            <p>Chaque phase prépare la suivante. Vous savez toujours où vous en êtes, ce que vous devez maîtriser et sur quoi vous entraîner.</p>
+          </div>
+          <a class="btn btn--ghost" href="parcours.html">Voir le parcours complet</a>
+        </div>
+
+        <div class="phase-cards">
+          <article class="card phase-card reveal">
+            <span class="phase-card__num">PHASE 01 · DÉBUTANT</span>
+            <h3>Fondations</h3>
+            <p>Le socle technique : comprendre la machine avant de l'attaquer.</p>
+            <ul>
+              <li>Linux &amp; ligne de commande</li>
+              <li>Réseaux, IP et protocoles</li>
+              <li>Web, HTTP et DevTools</li>
+            </ul>
+            <a class="card-arrow" href="parcours.html#phase-1">Voir les modules
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="card phase-card reveal" style="--delay:.08s">
+            <span class="phase-card__num">PHASE 02 · INTERMÉDIAIRE</span>
+            <h3>Reconnaissance</h3>
+            <p>Observer, cartographier et comprendre la surface d'attaque.</p>
+            <ul>
+              <li>OSINT &amp; recherche</li>
+              <li>Nmap &amp; énumération</li>
+              <li>OWASP Top 10</li>
+            </ul>
+            <a class="card-arrow" href="parcours.html#phase-2">Voir les modules
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="card phase-card reveal" style="--delay:.16s">
+            <span class="phase-card__num">PHASE 03 · AVANCÉ</span>
+            <h3>Exploitation</h3>
+            <p>Transformer une faiblesse identifiée en scénario d'attaque maîtrisé.</p>
+            <ul>
+              <li>Systèmes &amp; mots de passe</li>
+              <li>Active Directory</li>
+              <li>CTF &amp; méthodologie</li>
+            </ul>
+            <a class="card-arrow" href="parcours.html#phase-3">Voir les modules
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="card phase-card reveal" style="--delay:.24s">
+            <span class="phase-card__num">PHASE 04 · PRO</span>
+            <h3>Professionnalisation</h3>
+            <p>Passer du lab au métier : rapport, périmètre, certifications.</p>
+            <ul>
+              <li>Rapport &amp; remédiation</li>
+              <li>Cloud &amp; conteneurs</li>
+              <li>Certifications &amp; bug bounty</li>
+            </ul>
+            <a class="card-arrow" href="parcours.html#phase-4">Voir les modules
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="labs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">La pratique</p>
+            <h2>Comprendre en manipulant.</h2>
+            <p>Six labs courts, volontairement vulnérables et exécutés uniquement dans votre navigateur. Un objectif, des indices, un flag à capturer.</p>
+          </div>
+          <a class="btn btn--ghost" href="labs.html">Les 6 labs</a>
+        </div>
+
+        <div class="labs-grid">
+          <article class="card lab-card reveal">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 01</span>
+              <span class="badge badge--beginner">Débutant</span>
+            </div>
+            <h3>Dans l'ombre du code source</h3>
+            <p>Un secret oublié dans le HTML d'un site vitrine. Apprenez à lire ce que le navigateur reçoit vraiment.</p>
+            <div class="lab-tags"><span class="tag">DevTools</span><span class="tag">Reconnaissance</span><span class="tag">HTML</span></div>
+            <div class="lab-card__foot">
+              <time>10 min</time>
+              <a class="card-arrow" href="labs/lab1-source.html">Ouvrir le lab
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card reveal" style="--delay:.08s">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 02</span>
+              <span class="badge badge--beginner">Débutant</span>
+            </div>
+            <h3>Le formulaire bavard</h3>
+            <p>Un champ de commentaire affiche votre saisie sans la filtrer. Faites exécuter du code par la page.</p>
+            <div class="lab-tags"><span class="tag">XSS</span><span class="tag">Web</span><span class="tag">Injection</span></div>
+            <div class="lab-card__foot">
+              <time>15 min</time>
+              <a class="card-arrow" href="labs/lab2-xss.html">Ouvrir le lab
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card reveal" style="--delay:.16s">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 03</span>
+              <span class="badge badge--intermediate">Intermédiaire</span>
+            </div>
+            <h3>La facture de trop</h3>
+            <p>Un identifiant dans l'URL suffit-il à accéder aux données d'un autre client ? Découvrez l'IDOR.</p>
+            <div class="lab-tags"><span class="tag">IDOR</span><span class="tag">Accès</span><span class="tag">API</span></div>
+            <div class="lab-card__foot">
+              <time>20 min</time>
+              <a class="card-arrow" href="labs/lab3-idor.html">Ouvrir le lab
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--bordered" id="methode">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">La méthode</p>
+            <h2>Apprendre vite, sans apprendre mal.</h2>
+            <p>La sécurité offensive demande de la rigueur. Le site est construit autour de trois principes simples.</p>
+          </div>
+        </div>
+
+        <div class="features">
+          <article class="card feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="18" cy="17" r="3" stroke="currentColor" stroke-width="1.8"/><path d="m20.5 19.5 2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Un ordre, pas un dump de liens</h3>
+            <p>Chaque ressource est reliée à une étape précise. Les prérequis sont explicites, les niveaux sont identifiés et le plan de 12 semaines vous donne un rythme réaliste.</p>
+          </article>
+
+          <article class="card feature reveal" style="--delay:.08s">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6M10 3v6L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3L14 9V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 14h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>La pratique au même endroit</h3>
+            <p>Les labs sont immédiats : aucun serveur à monter, aucune inscription. Vous testez une faille, vous capturez le flag, puis vous lisez l'impact et le correctif.</p>
+          </article>
+
+          <article class="card feature reveal" style="--delay:.16s">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v6c0 4.8-3.4 7.8-8 9-4.6-1.2-8-4.2-8-9V6l8-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>L'éthique dès la première heure</h3>
+            <p>Autorisation écrite, périmètre, données personnelles, divulgation responsable : le cadre légal fait partie de la formation, pas d'une page oubliée.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Le catalogue</p>
+            <h2>Des ressources réelles, classées par niveau.</h2>
+            <p>TryHackMe, Hack The Box, PortSwigger, Root-Me, OverTheWire, OWASP, chaînes YouTube : le meilleur du gratuit et du freemium, avec une recommandation d'usage.</p>
+          </div>
+          <a class="btn btn--primary" href="cours.html">Ouvrir le catalogue</a>
+        </div>
+        <div class="provider-strip reveal">
+          <span class="provider">TryHackMe</span>
+          <span class="provider">Hack The Box</span>
+          <span class="provider">PortSwigger</span>
+          <span class="provider">Root-Me</span>
+          <span class="provider">OverTheWire</span>
+          <span class="provider">OWASP</span>
+          <span class="provider">Cisco NetAcad</span>
+          <span class="provider">IppSec</span>
+          <span class="provider">LiveOverflow</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <p class="kicker">Prochaine étape</p>
+          <h2>Votre première marche commence ici.</h2>
+          <p>Ouvrez la feuille de route, choisissez votre niveau actuel et attaquez le premier module. Le reste suivra, dans l'ordre.</p>
+          <div class="cta-actions">
+            <a class="btn btn--primary" href="parcours.html">Commencer le parcours</a>
+            <a class="btn btn--ghost" href="ethique.html">Lire le cadre légal</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="logo-text">HackLab <small>Academy</small></span>
+          </a>
+          <p>Un parcours pédagogique indépendant pour apprendre la sécurité offensive de manière structurée, pratique et responsable.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Apprendre</h3>
+          <a href="parcours.html">Parcours complet</a>
+          <a href="cours.html">Catalogue de cours</a>
+          <a href="labs.html">Labs interactifs</a>
+          <a href="ressources.html">Outils &amp; ressources</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Cadre</h3>
+          <a href="ethique.html">Éthique &amp; légal</a>
+          <a href="ethique.html#divulgation">Divulgation responsable</a>
+          <a href="ethique.html#sources">Sources &amp; crédits</a>
+          <a href="ethique.html#avertissement">Avertissement</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Avant de continuer</h3>
+          <p>Les labs sont volontairement vulnérables, mais isolés et exécutés localement. N'attaquez jamais un système sans autorisation écrite.</p>
+          <p class="footer-warning">Apprendre, tester, protéger.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> HackLab Academy · Projet pédagogique indépendant</p>
+        <p><strong>0 tracker · 0 compte · 0 donnée collectée</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

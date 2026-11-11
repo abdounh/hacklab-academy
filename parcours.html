@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours débutant → pro — HackLab Academy</title>
+  <meta name="description" content="Roadmap complète pour apprendre le pentest : 4 phases, 24 modules ordonnés, prérequis, ressources et plan de 12 semaines.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="parcours.html" aria-current="page">Parcours</a>
+        <a href="cours.html">Cours</a>
+        <a href="labs.html">Labs</a>
+        <a href="ressources.html">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="cours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero">
+      <div class="container">
+        <p class="kicker">Roadmap · 4 phases · 24 modules</p>
+        <h1>Le parcours complet,<br><span class="text-gradient">du premier terminal au rapport.</span></h1>
+        <p class="lead">Chaque phase a un objectif clair, des prérequis explicites et des ressources réelles. Cochez les modules au fur et à mesure : votre progression est enregistrée localement dans ce navigateur.</p>
+
+        <div class="progress-panel">
+          <div class="progress-panel__text">
+            <strong>Progression</strong>
+            <span id="roadmap-label">0 / 24 modules terminés</span>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Progression du parcours" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0">
+            <div class="progress__bar" id="roadmap-bar"></div>
+          </div>
+          <button class="reset-link" type="button" id="reset-roadmap">Réinitialiser</button>
+        </div>
+
+        <div class="notice notice--info mt-2">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Comment lire cette page :</strong> suivez les phases dans l'ordre. Un module peut demander 1 à 3 semaines : ne passez au suivant que lorsque vous savez refaire l'exercice sans regarder la correction. Les liens externes s'ouvrent dans un nouvel onglet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="roadmap">
+          <article class="phase-block" id="phase-1">
+            <div class="phase-rail" aria-hidden="true">
+              <span class="phase-number">01</span>
+              <span class="phase-line"></span>
+            </div>
+            <div class="phase-content">
+              <div class="phase-head">
+                <h2>Fondations</h2>
+                <span class="badge badge--beginner">Débutant · 0–4 semaines</span>
+              </div>
+              <p class="phase-sub">Comprendre la machine, le réseau et le web avant de parler d'exploitation. C'est la phase que l'on saute trop souvent — et c'est celle qui fait la différence ensuite.</p>
+              <div class="skill-chips">
+                <span>Linux</span><span>Réseaux</span><span>HTTP</span><span>Python</span><span>Hygiène</span>
+              </div>
+
+              <div class="module-grid">
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m1" aria-label="Marquer le module Monter son laboratoire comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Monter son laboratoire</h3>
+                    <p>Machine virtuelle, Kali Linux, snapshots et organisation des notes. Un environnement reproductible évite de tout casser.</p>
+                    <div class="module-tags"><span>VM</span><span>Kali</span><span>snapshots</span></div>
+                    <div class="module-res">
+                      <a href="https://www.kali.org/docs/" target="_blank" rel="noopener noreferrer">Kali Docs</a>
+                      <a href="https://www.virtualbox.org/" target="_blank" rel="noopener noreferrer">VirtualBox</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m2" aria-label="Marquer le module Linux comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Linux : les commandes qui comptent</h3>
+                    <p>Navigation, permissions, processus, services, journaux. Savoir lire un système avant de chercher à l'exploiter.</p>
+                    <div class="module-tags"><span>shell</span><span>permissions</span><span>logs</span></div>
+                    <div class="module-res">
+                      <a href="https://linuxjourney.com/" target="_blank" rel="noopener noreferrer">Linux Journey</a>
+                      <a href="https://overthewire.org/wargames/bandit/" target="_blank" rel="noopener noreferrer">Bandit</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m3" aria-label="Marquer le module Réseaux comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Réseaux : comprendre avant de scanner</h3>
+                    <p>Modèle OSI, TCP/IP, ports, DNS, NAT. Sans cette base, un résultat Nmap reste une liste de lignes illisibles.</p>
+                    <div class="module-tags"><span>OSI</span><span>TCP/IP</span><span>DNS</span></div>
+                    <div class="module-res">
+                      <a href="https://www.netacad.com/courses/networking/networking-basics" target="_blank" rel="noopener noreferrer">Cisco NetAcad</a>
+                      <a href="https://developer.mozilla.org/fr/docs/Web/HTTP" target="_blank" rel="noopener noreferrer">MDN HTTP</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m4" aria-label="Marquer le module Web comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Le web côté client et serveur</h3>
+                    <p>HTML, JavaScript, requêtes HTTP, cookies, sessions. Apprendre à utiliser les DevTools comme un analyste.</p>
+                    <div class="module-tags"><span>HTTP</span><span>cookies</span><span>DevTools</span></div>
+                    <div class="module-res">
+                      <a href="https://developer.mozilla.org/fr/docs/Learn" target="_blank" rel="noopener noreferrer">MDN Learn</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m5" aria-label="Marquer le module Python comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Python pour l'automatisation</h3>
+                    <p>Fichiers, boucles, requêtes HTTP, parsing. Automatiser une tâche répétitive est une compétence de pentester.</p>
+                    <div class="module-tags"><span>Python</span><span>scripts</span><span>requests</span></div>
+                    <div class="module-res">
+                      <a href="https://automatetheboringstuff.com/" target="_blank" rel="noopener noreferrer">Automate the Boring Stuff</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p1-m6" aria-label="Marquer le module Hygiène numérique comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Hygiène numérique &amp; défense</h3>
+                    <p>MFA, gestionnaire de mots de passe, sauvegardes, phishing. Un attaquant éthique comprend d'abord comment se protéger.</p>
+                    <div class="module-tags"><span>MFA</span><span>phishing</span><span>sauvegardes</span></div>
+                    <div class="module-res">
+                      <a href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener noreferrer">Cybermalveillance</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phase-block" id="phase-2">
+            <div class="phase-rail" aria-hidden="true">
+              <span class="phase-number">02</span>
+              <span class="phase-line"></span>
+            </div>
+            <div class="phase-content">
+              <div class="phase-head">
+                <h2>Reconnaissance &amp; web</h2>
+                <span class="badge badge--intermediate">Intermédiaire · 4–10 semaines</span>
+              </div>
+              <p class="phase-sub">Cartographier une cible autorisée, comprendre ses technologies et identifier les faiblesses web les plus courantes. La phase la plus rentable en pratique.</p>
+              <div class="skill-chips">
+                <span>OSINT</span><span>Nmap</span><span>ffuf</span><span>Burp Suite</span><span>OWASP</span>
+              </div>
+
+              <div class="module-grid">
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m1" aria-label="Marquer le module OSINT comme terminé"></label>
+                  <div class="module-body">
+                    <h3>OSINT &amp; renseignement</h3>
+                    <p>Google dorks, WHOIS, DNS, Shodan, réseaux sociaux. Collecter sans franchir la ligne : respect de la vie privée et du périmètre.</p>
+                    <div class="module-tags"><span>dorks</span><span>WHOIS</span><span>Shodan</span></div>
+                    <div class="module-res">
+                      <a href="https://osintframework.com/" target="_blank" rel="noopener noreferrer">OSINT Framework</a>
+                      <a href="https://www.shodan.io/" target="_blank" rel="noopener noreferrer">Shodan</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m2" aria-label="Marquer le module Nmap comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Nmap &amp; découverte réseau</h3>
+                    <p>Découverte d'hôtes, scan de ports, détection de services et scripts NSE. Toujours sur un périmètre autorisé.</p>
+                    <div class="module-tags"><span>Nmap</span><span>ports</span><span>NSE</span></div>
+                    <div class="module-res">
+                      <a href="https://nmap.org/book/" target="_blank" rel="noopener noreferrer">Nmap Book</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m3" aria-label="Marquer le module Énumération web comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Énumération web</h3>
+                    <p>Répertoires, fichiers, vhosts, technologies. ffuf, Gobuster, SecLists et bon sens pour éviter le bruit inutile.</p>
+                    <div class="module-tags"><span>ffuf</span><span>Gobuster</span><span>SecLists</span></div>
+                    <div class="module-res">
+                      <a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener noreferrer">ffuf</a>
+                      <a href="https://github.com/danielmiessler/SecLists" target="_blank" rel="noopener noreferrer">SecLists</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m4" aria-label="Marquer le module HTTP et sessions comme terminé"></label>
+                  <div class="module-body">
+                    <h3>HTTP, sessions &amp; authentification</h3>
+                    <p>Cookies, JWT, CORS, contrôle d'accès. Comprendre qui est autorisé à faire quoi, et comment le vérifier.</p>
+                    <div class="module-tags"><span>JWT</span><span>CORS</span><span>IDOR</span></div>
+                    <div class="module-res">
+                      <a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">PortSwigger Academy</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m5" aria-label="Marquer le module OWASP Top 10 comme terminé"></label>
+                  <div class="module-body">
+                    <h3>OWASP Top 10</h3>
+                    <p>Injection, broken access control, XSS, SSRF, composants vulnérables. Une carte mentale des risques web.</p>
+                    <div class="module-tags"><span>OWASP</span><span>injection</span><span>XSS</span></div>
+                    <div class="module-res">
+                      <a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">OWASP Top 10</a>
+                      <a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">Labs PortSwigger</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p2-m6" aria-label="Marquer le module Burp Suite comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Burp Suite &amp; premiers labs</h3>
+                    <p>Proxy, Repeater, Intruder. Intercepter une requête, la modifier, observer la réponse. Puis pratiquer sur des labs guidés.</p>
+                    <div class="module-tags"><span>Burp</span><span>proxy</span><span>labs</span></div>
+                    <div class="module-res">
+                      <a href="https://portswigger.net/burp/communitydownload" target="_blank" rel="noopener noreferrer">Burp Community</a>
+                      <a href="https://www.root-me.org/" target="_blank" rel="noopener noreferrer">Root-Me</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phase-block" id="phase-3">
+            <div class="phase-rail" aria-hidden="true">
+              <span class="phase-number">03</span>
+              <span class="phase-line"></span>
+            </div>
+            <div class="phase-content">
+              <div class="phase-head">
+                <h2>Exploitation &amp; systèmes</h2>
+                <span class="badge badge--advanced">Avancé · 10–18 semaines</span>
+              </div>
+              <p class="phase-sub">Relier une vulnérabilité à un impact réel : accès initial, élévation de privilèges, mouvement latéral. Uniquement en lab ou avec autorisation écrite.</p>
+              <div class="skill-chips">
+                <span>Metasploit</span><span>hashcat</span><span>privesc</span><span>Active Directory</span><span>CTF</span>
+              </div>
+
+              <div class="module-grid">
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m1" aria-label="Marquer le module Frameworks comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Frameworks &amp; CVE</h3>
+                    <p>Metasploit, searchsploit, veille CVE. Comprendre ce que fait un exploit au lieu d'exécuter une commande trouvée en ligne.</p>
+                    <div class="module-tags"><span>Metasploit</span><span>CVE</span><span>exploit</span></div>
+                    <div class="module-res">
+                      <a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Metasploit</a>
+                      <a href="https://www.offsec.com/metasploit-unleashed/" target="_blank" rel="noopener noreferrer">Metasploit Unleashed</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m2" aria-label="Marquer le module Mots de passe comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Attaques de mots de passe</h3>
+                    <p>Hashcat, John the Ripper, Hydra. Comprendre le coût d'un hash, le taux de tentative et les défenses associées.</p>
+                    <div class="module-tags"><span>hashcat</span><span>John</span><span>Hydra</span></div>
+                    <div class="module-res">
+                      <a href="https://hashcat.net/hashcat/" target="_blank" rel="noopener noreferrer">Hashcat</a>
+                      <a href="https://www.openwall.com/john/" target="_blank" rel="noopener noreferrer">John the Ripper</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m3" aria-label="Marquer le module Élévation Linux comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Élévation de privilèges Linux</h3>
+                    <p>SUID, sudo, cron, capabilities, services mal configurés. Une méthodologie de vérification systématique.</p>
+                    <div class="module-tags"><span>SUID</span><span>sudo</span><span>cron</span></div>
+                    <div class="module-res">
+                      <a href="https://github.com/swisskyrepo/InternalAllTheThings" target="_blank" rel="noopener noreferrer">Internal All The Things</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m4" aria-label="Marquer le module Élévation Windows comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Élévation de privilèges Windows</h3>
+                    <p>Services, tokens, UAC, registre. Les chemins classiques et les traces à documenter dans un rapport.</p>
+                    <div class="module-tags"><span>tokens</span><span>UAC</span><span>services</span></div>
+                    <div class="module-res">
+                      <a href="https://book.hacktricks.wiki/" target="_blank" rel="noopener noreferrer">HackTricks</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m5" aria-label="Marquer le module Active Directory comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Active Directory</h3>
+                    <p>Kerberos, BloodHound, délégations et chemins d'attaque. Le cœur de nombreux environnements d'entreprise.</p>
+                    <div class="module-tags"><span>Kerberos</span><span>BloodHound</span><span>AD</span></div>
+                    <div class="module-res">
+                      <a href="https://academy.hackthebox.com/" target="_blank" rel="noopener noreferrer">HTB Academy</a>
+                      <a href="https://bloodhound.readthedocs.io/" target="_blank" rel="noopener noreferrer">BloodHound Docs</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p3-m6" aria-label="Marquer le module CTF comme terminé"></label>
+                  <div class="module-body">
+                    <h3>CTF &amp; méthodologie</h3>
+                    <p>Résoudre des machines, écrire des notes réutilisables, chronométrer sa démarche. La régularité bat le bachotage.</p>
+                    <div class="module-tags"><span>THM</span><span>HTB</span><span>writeups</span></div>
+                    <div class="module-res">
+                      <a href="https://app.hackthebox.com/starting-point" target="_blank" rel="noopener noreferrer">HTB Starting Point</a>
+                      <a href="https://hackropole.fr/" target="_blank" rel="noopener noreferrer">Hackropole</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phase-block" id="phase-4">
+            <div class="phase-rail" aria-hidden="true">
+              <span class="phase-number">04</span>
+              <span class="phase-line"></span>
+            </div>
+            <div class="phase-content">
+              <div class="phase-head">
+                <h2>Professionnalisation</h2>
+                <span class="badge badge--pro">Pro · 18 semaines et +</span>
+              </div>
+              <p class="phase-sub">Un bon pentester ne livre pas seulement des accès : il explique le risque, propose un correctif et respecte le cadre. Cette phase transforme les compétences en métier.</p>
+              <div class="skill-chips">
+                <span>rapport</span><span>CVSS</span><span>red team</span><span>cloud</span><span>bug bounty</span>
+              </div>
+
+              <div class="module-grid">
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m1" aria-label="Marquer le module Rapport comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Rapport &amp; remédiation</h3>
+                    <p>Résumé exécutif, constats, preuves, CVSS, recommandations priorisées. Le livrable qui donne de la valeur à l'audit.</p>
+                    <div class="module-tags"><span>findings</span><span>CVSS</span><span>PoC</span></div>
+                    <div class="module-res">
+                      <a href="https://www.first.org/cvss/" target="_blank" rel="noopener noreferrer">CVSS</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m2" aria-label="Marquer le module Red team comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Red team &amp; détection</h3>
+                    <p>MITRE ATT&CK, OPSEC, purple team. Penser attaque et détection comme deux faces du même exercice.</p>
+                    <div class="module-tags"><span>ATT&amp;CK</span><span>OPSEC</span><span>purple</span></div>
+                    <div class="module-res">
+                      <a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m3" aria-label="Marquer le module Cloud comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Cloud &amp; conteneurs</h3>
+                    <p>IAM, stockage objet, Docker, Kubernetes. Les erreurs de configuration sont la première cause d'incident cloud.</p>
+                    <div class="module-tags"><span>IAM</span><span>Docker</span><span>K8s</span></div>
+                    <div class="module-res">
+                      <a href="https://github.com/RhinoSecurityLabs/cloudgoat" target="_blank" rel="noopener noreferrer">CloudGoat</a>
+                      <a href="https://github.com/madhuakula/kubernetes-goat" target="_blank" rel="noopener noreferrer">Kubernetes Goat</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m4" aria-label="Marquer le module Certifications comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Certifications</h3>
+                    <p>eJPT, PNPT, CPTS, OSCP : choisir selon son objectif, son budget et le niveau réel exigé.</p>
+                    <div class="module-tags"><span>eJPT</span><span>PNPT</span><span>OSCP</span></div>
+                    <div class="module-res">
+                      <a href="https://ine.com/security/certifications/ejpt-certification" target="_blank" rel="noopener noreferrer">eJPT</a>
+                      <a href="https://www.offsec.com/courses/pen-200/" target="_blank" rel="noopener noreferrer">OSCP</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m5" aria-label="Marquer le module Bug bounty comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Bug bounty</h3>
+                    <p>Lire un scope, éviter les doublons, écrire un rapport clair et reproductible. La qualité prime sur la quantité.</p>
+                    <div class="module-tags"><span>scope</span><span>HackerOne</span><span>YesWeHack</span></div>
+                    <div class="module-res">
+                      <a href="https://www.hacker101.com/" target="_blank" rel="noopener noreferrer">Hacker101</a>
+                      <a href="https://www.yeswehack.com/" target="_blank" rel="noopener noreferrer">YesWeHack</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="module-card">
+                  <label class="module-check"><input type="checkbox" data-module="p4-m6" aria-label="Marquer le module Spécialisation comme terminé"></label>
+                  <div class="module-body">
+                    <h3>Spécialisation &amp; carrière</h3>
+                    <p>Web, Active Directory, cloud, mobile, DFIR. Construire un portfolio de labs et de writeups propres.</p>
+                    <div class="module-tags"><span>portfolio</span><span>DFIR</span><span>carrière</span></div>
+                    <div class="module-res">
+                      <a href="https://blueteamlabs.online/" target="_blank" rel="noopener noreferrer">Blue Team Labs</a>
+                      <a href="https://letsdefend.io/" target="_blank" rel="noopener noreferrer">LetsDefend</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--bordered">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Plan pratique</p>
+            <h2>12 semaines pour poser les bases.</h2>
+            <p>À raison de 6 à 8 heures par semaine. Ce planning est un guide : adaptez le rythme, mais gardez l'ordre des dépendances.</p>
+          </div>
+          <a class="btn btn--ghost" href="cours.html">Trouver les cours</a>
+        </div>
+
+        <div class="table-wrap reveal">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Semaine</th>
+                <th scope="col">Focus</th>
+                <th scope="col">Pratique</th>
+                <th scope="col">Ressource</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>S1</strong></td><td>Environnement + Linux</td><td>Bandit niveaux 0–10</td><td class="mono">OverTheWire</td></tr>
+              <tr><td><strong>S2</strong></td><td>Linux + réseaux</td><td>Bandit 11–20, bases Cisco</td><td class="mono">NetAcad</td></tr>
+              <tr><td><strong>S3</strong></td><td>Web, HTTP &amp; Python</td><td>Parcours Pre Security</td><td class="mono">TryHackMe</td></tr>
+              <tr><td><strong>S4</strong></td><td>Consolidation</td><td>Root-Me débutant + lab 01</td><td class="mono">Root-Me</td></tr>
+              <tr><td><strong>S5</strong></td><td>OSINT &amp; Nmap</td><td>Scan d'un lab autorisé</td><td class="mono">TryHackMe</td></tr>
+              <tr><td><strong>S6</strong></td><td>Énumération web</td><td>ffuf / Gobuster en lab</td><td class="mono">PortSwigger</td></tr>
+              <tr><td><strong>S7</strong></td><td>OWASP : injection &amp; XSS</td><td>Labs guidés + lab 02</td><td class="mono">PortSwigger</td></tr>
+              <tr><td><strong>S8</strong></td><td>OWASP : accès &amp; SQLi</td><td>Labs guidés + labs 03–04</td><td class="mono">PortSwigger</td></tr>
+              <tr><td><strong>S9</strong></td><td>Burp Suite &amp; auth</td><td>Complete Beginner</td><td class="mono">TryHackMe</td></tr>
+              <tr><td><strong>S10</strong></td><td>Systèmes</td><td>HTB Starting Point</td><td class="mono">Hack The Box</td></tr>
+              <tr><td><strong>S11</strong></td><td>Mots de passe &amp; privesc</td><td>Labs + lab 05</td><td class="mono">HackTricks</td></tr>
+              <tr><td><strong>S12</strong></td><td>CTF &amp; bilan</td><td>Hackropole / picoCTF + lab 06</td><td class="mono">Hackropole</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="notice notice--info mt-2 reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Semaines 13 à 24 :</strong> reprenez les phases 3 et 4 avec des machines plus difficiles, un projet de lab personnel et, si possible, un binôme. La régularité et les notes prises comptent davantage que le nombre de machines terminées.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Et après ?</p>
+            <h2>Choisir la bonne certification.</h2>
+            <p>Une certification ne remplace pas un portfolio, mais elle structure un parcours et rassure un recruteur. Voici un ordre réaliste.</p>
+          </div>
+        </div>
+
+        <div class="course-grid">
+          <article class="card course-card reveal">
+            <div class="course-top"><span class="provider-tag">INE / eLearnSecurity</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>eJPT</h3>
+            <p>Première certification pratique accessible. Bonne étape après les fondamentaux et quelques labs guidés.</p>
+            <div class="course-meta"><span>Pratique</span><span>Entrée de gamme</span></div>
+            <a class="course-link" href="https://ine.com/security/certifications/ejpt-certification" target="_blank" rel="noopener noreferrer">Voir le référentiel <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="card course-card reveal" style="--delay:.05s">
+            <div class="course-top"><span class="provider-tag">TCM Security</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>PNPT</h3>
+            <p>Orientée entreprise : Active Directory, rapport professionnel et soutenance. Un excellent choix après la phase 3.</p>
+            <div class="course-meta"><span>Pratique</span><span>Rapport inclus</span></div>
+            <a class="course-link" href="https://academy.tcm-sec.com/" target="_blank" rel="noopener noreferrer">Voir le programme <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="card course-card reveal" style="--delay:.1s">
+            <div class="course-top"><span class="provider-tag">OffSec</span><span class="badge badge--pro">Avancé</span></div>
+            <h3>OSCP (PEN-200)</h3>
+            <p>La référence pratique exigeante. À envisager après plusieurs mois de labs réguliers et une méthodologie solide.</p>
+            <div class="course-meta"><span>Pratique</span><span>Examen 24 h</span></div>
+            <a class="course-link" href="https://www.offsec.com/courses/pen-200/" target="_blank" rel="noopener noreferrer">Voir le cours <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+
+        <div class="cta-panel mt-3 reveal">
+          <p class="kicker">Passer à la pratique</p>
+          <h2>Un module lu ne vaut pas un lab terminé.</h2>
+          <p>Les six labs couvrent les erreurs les plus fréquentes du web et de l'authentification. Commencez par le code source, puis enchaînez.</p>
+          <div class="cta-actions">
+            <a class="btn btn--primary" href="labs.html">Ouvrir les labs</a>
+            <a class="btn btn--ghost" href="cours.html">Explorer les cours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="logo-text">HackLab <small>Academy</small></span>
+          </a>
+          <p>Un parcours pédagogique indépendant pour apprendre la sécurité offensive de manière structurée, pratique et responsable.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Apprendre</h3>
+          <a href="parcours.html">Parcours complet</a>
+          <a href="cours.html">Catalogue de cours</a>
+          <a href="labs.html">Labs interactifs</a>
+          <a href="ressources.html">Outils &amp; ressources</a>
+        </div>
+        <div class="footer-col">
+          <h3>Cadre</h3>
+          <a href="ethique.html">Éthique &amp; légal</a>
+          <a href="ethique.html#divulgation">Divulgation responsable</a>
+          <a href="ethique.html#sources">Sources &amp; crédits</a>
+          <a href="ethique.html#avertissement">Avertissement</a>
+        </div>
+        <div class="footer-col">
+          <h3>Avant de continuer</h3>
+          <p>Les labs sont volontairement vulnérables, mais isolés et exécutés localement. N'attaquez jamais un système sans autorisation écrite.</p>
+          <p class="footer-warning">Apprendre, tester, protéger.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> HackLab Academy · Projet pédagogique indépendant</p>
+        <p><strong>0 tracker · 0 compte · 0 donnée collectée</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

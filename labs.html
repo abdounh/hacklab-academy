@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labs interactifs de pentest — HackLab Academy</title>
+  <meta name="description" content="Six labs de cybersécurité interactifs et gratuits : code source, XSS, IDOR, injection SQL, brute force et encodage. 100 % dans le navigateur, 100 % local.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="parcours.html">Parcours</a>
+        <a href="cours.html">Cours</a>
+        <a href="labs.html" aria-current="page">Labs</a>
+        <a href="ressources.html">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero">
+      <div class="container">
+        <p class="kicker">Labs · 6 challenges · 100 % navigateur</p>
+        <h1>Apprendre en cassant<br><span class="text-gradient">des choses sans risque.</span></h1>
+        <p class="lead">Chaque lab reproduit une erreur réelle dans un environnement local et volontairement vulnérable. Vous cherchez, vous testez, vous capturez un flag, puis vous lisez l'impact et le correctif.</p>
+
+        <div class="labs-progress">
+          <div>
+            <span class="labs-progress__label">Votre progression</span>
+            <strong id="labs-count">0 / 6</strong>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Progression des labs" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
+            <div class="progress__bar" id="labs-progress-bar"></div>
+          </div>
+          <button class="reset-link" type="button" id="reset-all-labs">Réinitialiser</button>
+        </div>
+
+        <div class="notice">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Cadre strictement pédagogique.</strong> Ces labs simulent des failles dans votre propre navigateur. Ils ne ciblent aucun site réel et ne collectent aucune donnée. N'utilisez jamais ces techniques sur un système sans autorisation écrite. <a href="ethique.html" style="color:inherit;text-decoration:underline">Lire le cadre légal</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Choisir un lab</p>
+            <h2>Du plus simple au plus subtil.</h2>
+            <p>Commencez par le lab 01, puis suivez l'ordre. Chaque challenge introduit un concept réutilisé plus tard dans le parcours.</p>
+          </div>
+        </div>
+
+        <div class="labs-grid">
+          <article class="card lab-card" data-lab-id="lab1-source">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 01</span>
+              <span class="badge badge--beginner">Débutant</span>
+            </div>
+            <h3>Dans l'ombre du code source</h3>
+            <p>Un développeur a laissé un secret dans le HTML d'un site vitrine. Apprenez à lire ce que le navigateur reçoit réellement.</p>
+            <div class="lab-tags"><span class="tag">DevTools</span><span class="tag">HTML</span><span class="tag">Reconnaissance</span></div>
+            <div class="lab-card__foot">
+              <time>10 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab1-source.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card" data-lab-id="lab2-xss">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 02</span>
+              <span class="badge badge--beginner">Débutant</span>
+            </div>
+            <h3>Le formulaire bavard</h3>
+            <p>Un livre d'or affiche votre message sans échappement. Faites exécuter du code par la page et comprenez le XSS réfléchi.</p>
+            <div class="lab-tags"><span class="tag">XSS</span><span class="tag">Injection</span><span class="tag">Web</span></div>
+            <div class="lab-card__foot">
+              <time>15 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab2-xss.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card" data-lab-id="lab3-idor">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 03</span>
+              <span class="badge badge--intermediate">Intermédiaire</span>
+            </div>
+            <h3>La facture de trop</h3>
+            <p>Un identifiant suffit-il à accéder aux données d'un autre client ? Manipulez une API simulée et découvrez l'IDOR.</p>
+            <div class="lab-tags"><span class="tag">IDOR</span><span class="tag">Accès</span><span class="tag">API</span></div>
+            <div class="lab-card__foot">
+              <time>20 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab3-idor.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card" data-lab-id="lab4-sqli">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 04</span>
+              <span class="badge badge--intermediate">Intermédiaire</span>
+            </div>
+            <h3>Le login qui avale tout</h3>
+            <p>Une requête SQL est construite par concaténation. Utilisez la logique de la base pour contourner l'authentification.</p>
+            <div class="lab-tags"><span class="tag">SQLi</span><span class="tag">Auth</span><span class="tag">Simulation</span></div>
+            <div class="lab-card__foot">
+              <time>20 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab4-sqli.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card" data-lab-id="lab5-bruteforce">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 05</span>
+              <span class="badge badge--intermediate">Intermédiaire</span>
+            </div>
+            <h3>Devine mon mot de passe</h3>
+            <p>Aucune limite de tentatives, aucun verrouillage, un mot de passe courant. Lancez une attaque par dictionnaire simulée.</p>
+            <div class="lab-tags"><span class="tag">Brute force</span><span class="tag">MFA</span><span class="tag">Défense</span></div>
+            <div class="lab-card__foot">
+              <time>15 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab5-bruteforce.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card lab-card" data-lab-id="lab6-crypto">
+            <div class="lab-card__head">
+              <span class="lab-index">LAB 06</span>
+              <span class="badge badge--beginner">Débutant</span>
+            </div>
+            <h3>Le coffre mal fermé</h3>
+            <p>Hexadécimal, Base64 et ROT13 : décodez un flag en plusieurs couches et comprenez pourquoi l'encodage n'est pas du chiffrement.</p>
+            <div class="lab-tags"><span class="tag">Encodage</span><span class="tag">Crypto</span><span class="tag">Logique</span></div>
+            <div class="lab-card__foot">
+              <time>15 min</time>
+              <span class="lab-done" hidden>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Terminé
+              </span>
+              <a class="card-arrow" href="labs/lab6-crypto.html">Ouvrir
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--bordered">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Mode d'emploi</p>
+            <h2>Un lab, trois temps.</h2>
+          </div>
+        </div>
+        <div class="steps">
+          <article class="card step">
+            <span class="step__num">01</span>
+            <h3>Lire le briefing</h3>
+            <p>Chaque lab précise le contexte, l'objectif et le périmètre. Les indices sont là pour débloquer, pas pour remplacer la réflexion.</p>
+          </article>
+          <article class="card step">
+            <span class="step__num">02</span>
+            <h3>Manipuler</h3>
+            <p>Utilisez les DevTools, les champs et les outils intégrés. Notez ce que vous essayez : la démarche compte autant que le résultat.</p>
+          </article>
+          <article class="card step">
+            <span class="step__num">03</span>
+            <h3>Valider puis comprendre</h3>
+            <p>Entrez le flag, lisez l'explication de la faille et le correctif. C'est cette étape qui transforme un jeu en compétence.</p>
+          </article>
+        </div>
+
+        <div class="notice notice--info mt-3">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Votre progression reste locale.</strong> Elle est stockée dans le <span class="mono">localStorage</span> de ce navigateur, sur cet appareil. Aucun compte, aucun serveur, aucune donnée envoyée.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="logo-text">HackLab <small>Academy</small></span>
+          </a>
+          <p>Un parcours pédagogique indépendant pour apprendre la sécurité offensive de manière structurée, pratique et responsable.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Apprendre</h3>
+          <a href="parcours.html">Parcours complet</a>
+          <a href="cours.html">Catalogue de cours</a>
+          <a href="labs.html">Labs interactifs</a>
+          <a href="ressources.html">Outils &amp; ressources</a>
+        </div>
+        <div class="footer-col">
+          <h3>Cadre</h3>
+          <a href="ethique.html">Éthique &amp; légal</a>
+          <a href="ethique.html#divulgation">Divulgation responsable</a>
+          <a href="ethique.html#sources">Sources &amp; crédits</a>
+          <a href="ethique.html#avertissement">Avertissement</a>
+        </div>
+        <div class="footer-col">
+          <h3>Avant de continuer</h3>
+          <p>Les labs sont volontairement vulnérables, mais isolés et exécutés localement. N'attaquez jamais un système sans autorisation écrite.</p>
+          <p class="footer-warning">Apprendre, tester, protéger.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> HackLab Academy · Projet pédagogique indépendant</p>
+        <p><strong>0 tracker · 0 compte · 0 donnée collectée</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/lab-core.js"></script>
+</body>
+</html>

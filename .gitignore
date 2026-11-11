@@ -1,0 +1,29 @@
+# Build and preview output
+dist/
+_site/
+
+# Qoder Sites descriptor and private bindings
+*.qoder.site
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Dependencies and tooling
+node_modules/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

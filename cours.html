@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue de cours — HackLab Academy</title>
+  <meta name="description" content="40 cours, parcours et chaînes YouTube triés du niveau débutant au niveau pro : TryHackMe, Hack The Box, PortSwigger, Root-Me, OWASP, Cisco, IppSec et plus.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="parcours.html">Parcours</a>
+        <a href="cours.html" aria-current="page">Cours</a>
+        <a href="labs.html">Labs</a>
+        <a href="ressources.html">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero">
+      <div class="container">
+        <p class="kicker">Catalogue · 40 ressources · 4 niveaux</p>
+        <h1>Les bons cours,<br><span class="text-gradient">dans le bon ordre.</span></h1>
+        <p class="lead">Des parcours, plateformes, labs et chaînes YouTube réels, classés par niveau et par domaine. Filtrez, cherchez, puis suivez la roadmap : une ressource n'a de valeur que replacée à la bonne étape.</p>
+        <div class="page-hero__meta">
+          <span class="badge badge--beginner">Débutant</span>
+          <span class="badge badge--intermediate">Intermédiaire</span>
+          <span class="badge badge--advanced">Avancé</span>
+          <span class="badge badge--pro">Pro</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="notice notice--info mb-0" style="margin-bottom:24px">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Mode d'emploi :</strong> choisissez un parcours principal par phase, complétez-le avec une chaîne YouTube pour les démonstrations, et pratiquez sur des labs. Les liens ouvrent les sites officiels dans un nouvel onglet. Les contenus appartiennent à leurs auteurs.</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="filter-chips" role="group" aria-label="Filtrer par niveau">
+            <button class="chip is-active" type="button" data-filter-level="all" aria-pressed="true">Tous</button>
+            <button class="chip" type="button" data-filter-level="debutant" aria-pressed="false">Débutant</button>
+            <button class="chip" type="button" data-filter-level="intermediaire" aria-pressed="false">Intermédiaire</button>
+            <button class="chip" type="button" data-filter-level="avance" aria-pressed="false">Avancé</button>
+            <button class="chip" type="button" data-filter-level="pro" aria-pressed="false">Pro</button>
+          </div>
+
+          <div class="catalog-fields">
+            <label class="search-field">
+              <span class="sr-only">Rechercher une ressource</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="search" id="course-search" placeholder="Rechercher : web, Linux, XSS…" autocomplete="off">
+            </label>
+            <label class="select-field">
+              <span class="sr-only">Filtrer par domaine</span>
+              <select id="course-category">
+                <option value="all">Tous les domaines</option>
+                <option value="fondations">Fondations</option>
+                <option value="reseau">Réseau</option>
+                <option value="web">Web</option>
+                <option value="systemes">Systèmes</option>
+                <option value="offensive">Offensive</option>
+                <option value="defense">Défense</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <p class="catalog-count"><span><strong id="course-count">40</strong> ressources affichées</span><span class="mono">Ordre recommandé : débutant → pro</span></p>
+
+        <div class="course-grid" id="course-grid">
+          <article class="course-card card" data-level="debutant" data-cat="fondations" data-search="cisco netacad introduction cybersécurité débutant théorie gratuit">
+            <div class="course-top"><span class="provider-tag">Cisco NetAcad</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Introduction to Cybersecurity</h3>
+            <p>Le vocabulaire, les menaces et les métiers de la cybersécurité. Une mise à niveau courte avant d'entrer dans la technique.</p>
+            <div class="course-meta"><span>≈ 6 h</span><span>Gratuit</span><span>Théorie</span></div>
+            <a class="course-link" href="https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="fondations" data-search="google cybersecurity certificate coursra débutant analyste soc">
+            <div class="course-top"><span class="provider-tag">Google · Coursera</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Google Cybersecurity Certificate</h3>
+            <p>Un cursus généraliste orienté analyste SOC : Linux, réseaux, SIEM, Python et réponse à incident. Accessible en audit gratuit.</p>
+            <div class="course-meta"><span>≈ 6 mois</span><span>Payant / audit</span><span>Certificat</span></div>
+            <a class="course-link" href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="fondations" data-search="tryhackme pre security débutant parcours réseau linux">
+            <div class="course-top"><span class="provider-tag">TryHackMe</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Pre Security</h3>
+            <p>Le parcours d'entrée de TryHackMe : fonctionnement du web, réseaux, Linux et attaques de base, avec de courtes salles pratiques.</p>
+            <div class="course-meta"><span>8–12 h</span><span>Freemium</span><span>Parcours guidé</span></div>
+            <a class="course-link" href="https://tryhackme.com/path/outline/presecurity" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="systemes" data-search="linux journey débutant commandes système gratuit">
+            <div class="course-top"><span class="provider-tag">Linux Journey</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Linux Journey</h3>
+            <p>Un parcours textuel progressif pour maîtriser le shell, les permissions, les processus et les bases du système.</p>
+            <div class="course-meta"><span>≈ 10 h</span><span>Gratuit</span><span>Interactif</span></div>
+            <a class="course-link" href="https://linuxjourney.com/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="systemes" data-search="overthewire bandit wargame linux shell débutant">
+            <div class="course-top"><span class="provider-tag">OverTheWire</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Bandit</h3>
+            <p>34 niveaux pour apprendre le shell en résolvant des défis. La meilleure première pratique Linux, sans installation.</p>
+            <div class="course-meta"><span>≈ 15 h</span><span>Gratuit</span><span>Wargame</span></div>
+            <a class="course-link" href="https://overthewire.org/wargames/bandit/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="reseau" data-search="cisco netacad networking basics réseau tcp ip débutant">
+            <div class="course-top"><span class="provider-tag">Cisco NetAcad</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Networking Basics</h3>
+            <p>Adressage IP, modèles réseau, commutation et routage. Les fondations indispensables pour comprendre Nmap et le web.</p>
+            <div class="course-meta"><span>≈ 12 h</span><span>Gratuit</span><span>Théorie + labs</span></div>
+            <a class="course-link" href="https://www.netacad.com/courses/networking/networking-basics" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="fondations" data-search="professor messer security plus sy0-701 débutant certification théorie">
+            <div class="course-top"><span class="provider-tag">Professor Messer</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>CompTIA Security+ SY0-701</h3>
+            <p>Cours vidéo complet et gratuit pour les fondamentaux de la sécurité : menaces, cryptographie, architecture, opérations.</p>
+            <div class="course-meta"><span>≈ 30 h</span><span>Gratuit</span><span>Vidéo</span></div>
+            <a class="course-link" href="https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="reseau" data-search="networkchuck youtube réseau linux débutant vidéo">
+            <div class="course-top"><span class="provider-tag">YouTube · NetworkChuck</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>NetworkChuck</h3>
+            <p>Des vidéos énergiques pour débuter : Linux, réseau, Docker et premiers pas en cybersécurité. Idéal pour garder la motivation.</p>
+            <div class="course-meta"><span>Continu</span><span>Gratuit</span><span>Chaîne YouTube</span></div>
+            <a class="course-link" href="https://www.youtube.com/@NetworkChuck" target="_blank" rel="noopener noreferrer">Voir la chaîne <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="offensive" data-search="hack the box starting point débutant machines pentest">
+            <div class="course-top"><span class="provider-tag">Hack The Box</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Starting Point</h3>
+            <p>Des machines d'introduction guidées avec des indices et une méthodologie. Le meilleur pont entre les cours et les CTF.</p>
+            <div class="course-meta"><span>Progression</span><span>Freemium</span><span>Machines</span></div>
+            <a class="course-link" href="https://app.hackthebox.com/starting-point" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="offensive" data-search="picoctf ctf débutant sécurité informatique">
+            <div class="course-top"><span class="provider-tag">picoCTF</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>picoCTF</h3>
+            <p>Une plateforme de capture du drapeau pensée pour les débutants, avec des défis web, crypto, forensic et reverse.</p>
+            <div class="course-meta"><span>Libre</span><span>Gratuit</span><span>CTF</span></div>
+            <a class="course-link" href="https://picoctf.org/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="systemes" data-search="kali linux documentation débutant outils installation">
+            <div class="course-top"><span class="provider-tag">Kali Linux</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Kali Docs</h3>
+            <p>La documentation officielle pour installer Kali, configurer une VM et prendre en main les outils sans recopier de commandes au hasard.</p>
+            <div class="course-meta"><span>Référence</span><span>Gratuit</span><span>Documentation</span></div>
+            <a class="course-link" href="https://www.kali.org/docs/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="debutant" data-cat="defense" data-search="cybermalveillance gouv fr défense débutant phishing">
+            <div class="course-top"><span class="provider-tag">Cybermalveillance.gouv.fr</span><span class="badge badge--beginner">Débutant</span></div>
+            <h3>Se protéger au quotidien</h3>
+            <p>Guides pratiques sur le phishing, les mots de passe, les sauvegardes et la réponse à incident, en français et à jour.</p>
+            <div class="course-meta"><span>Court</span><span>Gratuit</span><span>Français</span></div>
+            <a class="course-link" href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="tryhackme complete beginner intermediate parcours pentest">
+            <div class="course-top"><span class="provider-tag">TryHackMe</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Complete Beginner</h3>
+            <p>Un parcours large pour consolider Linux, réseau, web et premiers outils offensifs à travers des salles guidées.</p>
+            <div class="course-meta"><span>≈ 20 h</span><span>Freemium</span><span>Parcours guidé</span></div>
+            <a class="course-link" href="https://tryhackme.com/path/outline/beginner" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="tryhackme jr penetration tester pentest junior parcours">
+            <div class="course-top"><span class="provider-tag">TryHackMe</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Jr Penetration Tester</h3>
+            <p>Reconnaissance, exploitation web, privesc et outils : le parcours le plus proche d'un poste de pentester junior.</p>
+            <div class="course-meta"><span>≈ 60 h</span><span>Freemium</span><span>Parcours métier</span></div>
+            <a class="course-link" href="https://tryhackme.com/path/outline/jrpenetrationtester" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="portswigger web security academy gratuit labs xss sqli ssrf">
+            <div class="course-top"><span class="provider-tag">PortSwigger</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Web Security Academy</h3>
+            <p>La référence gratuite pour le pentest web : cours clairs et centaines de labs interactifs, de l'apprenti à l'expert.</p>
+            <div class="course-meta"><span>200+ labs</span><span>Gratuit</span><span>Web</span></div>
+            <a class="course-link" href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="owasp top 10 risques web injection contrôle accès">
+            <div class="course-top"><span class="provider-tag">OWASP</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>OWASP Top 10</h3>
+            <p>La carte des dix risques web majeurs, avec des exemples concrets et des pistes de prévention. À lire et relire.</p>
+            <div class="course-meta"><span>≈ 4 h</span><span>Gratuit</span><span>Référence</span></div>
+            <a class="course-link" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="root me français challenges pentest web système">
+            <div class="course-top"><span class="provider-tag">Root-Me</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Root-Me</h3>
+            <p>La plateforme francophone de référence : challenges web, système, réseau, crypto et forensic, avec un classement motivant.</p>
+            <div class="course-meta"><span>Progression</span><span>Freemium</span><span>Français</span></div>
+            <a class="course-link" href="https://www.root-me.org/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="hack the box academy modules pentest intermediate">
+            <div class="course-top"><span class="provider-tag">Hack The Box</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>HTB Academy</h3>
+            <p>Des modules structurés avec exercices et machines : web, Active Directory, cloud, privesc et méthodologie.</p>
+            <div class="course-meta"><span>Modules</span><span>Freemium</span><span>Pratique</span></div>
+            <a class="course-link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="overthewire natas web security wargame intermediate">
+            <div class="course-top"><span class="provider-tag">OverTheWire</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Natas</h3>
+            <p>Un wargame web progressif : sources, cookies, injections et logique applicative. Chaque niveau enseigne une erreur réelle.</p>
+            <div class="course-meta"><span>34 niveaux</span><span>Gratuit</span><span>Wargame</span></div>
+            <a class="course-link" href="https://overthewire.org/wargames/natas/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="owasp juice shop application vulnérable entraînement">
+            <div class="course-top"><span class="provider-tag">OWASP</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Juice Shop</h3>
+            <p>Une application web volontairement vulnérable, riche en challenges modernes. Parfaite pour s'entraîner en local.</p>
+            <div class="course-meta"><span>Labs</span><span>Gratuit</span><span>Open source</span></div>
+            <a class="course-link" href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="owasp webgoat cours web vulnérable">
+            <div class="course-top"><span class="provider-tag">OWASP</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>WebGoat</h3>
+            <p>Des leçons interactives sur les vulnérabilités web, avec des explications intégrées. Un bon complément après l'OWASP Top 10.</p>
+            <div class="course-meta"><span>Leçons</span><span>Gratuit</span><span>Open source</span></div>
+            <a class="course-link" href="https://owasp.org/www-project-webgoat/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="john hammond youtube pentest ctf analyse malware">
+            <div class="course-top"><span class="provider-tag">YouTube · John Hammond</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>John Hammond</h3>
+            <p>CTF, analyse de malware, OSINT et démonstrations pédagogiques. Une chaîne dense pour voir la démarche en temps réel.</p>
+            <div class="course-meta"><span>Continu</span><span>Gratuit</span><span>Chaîne YouTube</span></div>
+            <a class="course-link" href="https://www.youtube.com/@_JohnHammond" target="_blank" rel="noopener noreferrer">Voir la chaîne <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="the cyber mentor youtube pentest intermediate">
+            <div class="course-top"><span class="provider-tag">YouTube · The Cyber Mentor</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>The Cyber Mentor</h3>
+            <p>Des sessions longues et concrètes sur le pentest, Active Directory et la carrière. Un ton direct, sans jargon inutile.</p>
+            <div class="course-meta"><span>Continu</span><span>Gratuit</span><span>Chaîne YouTube</span></div>
+            <a class="course-link" href="https://www.youtube.com/@TCMSecurityAcademy" target="_blank" rel="noopener noreferrer">Voir la chaîne <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="vulnhub machines virtuelles vulnérables entraînement">
+            <div class="course-top"><span class="provider-tag">VulnHub</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>VulnHub</h3>
+            <p>Des machines virtuelles téléchargeables pour s'entraîner hors ligne. Parfait pour apprendre à documenter une intrusion en lab.</p>
+            <div class="course-meta"><span>Machines</span><span>Gratuit</span><span>Local</span></div>
+            <a class="course-link" href="https://www.vulnhub.com/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="offensive" data-search="hackropole anssi ctf français archive challenges">
+            <div class="course-top"><span class="provider-tag">ANSSI · Hackropole</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Hackropole</h3>
+            <p>Les archives des challenges du 404 CTF, avec épreuves web, crypto, reverse et forensic, expliquées en français.</p>
+            <div class="course-meta"><span>Challenges</span><span>Gratuit</span><span>Français</span></div>
+            <a class="course-link" href="https://hackropole.fr/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="hacker101 hackerone cours bug bounty web">
+            <div class="course-top"><span class="provider-tag">HackerOne</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Hacker101</h3>
+            <p>Un cours gratuit sur le bug bounty et le web, complété par des CTF et des retours d'expérience de chasseurs.</p>
+            <div class="course-meta"><span>≈ 10 h</span><span>Gratuit</span><span>Vidéo + CTF</span></div>
+            <a class="course-link" href="https://www.hacker101.com/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="defense" data-search="blue team labs online défense soc investigation">
+            <div class="course-top"><span class="provider-tag">Blue Team Labs</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>Blue Team Labs Online</h3>
+            <p>Des investigations défensives et des challenges SOC pour comprendre ce qu'un attaquant laisse comme traces.</p>
+            <div class="course-meta"><span>Labs</span><span>Freemium</span><span>Défense</span></div>
+            <a class="course-link" href="https://blueteamlabs.online/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="defense" data-search="letsdefend soc analyst défense blue team">
+            <div class="course-top"><span class="provider-tag">LetsDefend</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>LetsDefend</h3>
+            <p>Une plateforme d'entraînement SOC avec alertes, journaux et scénarios d'investigation. Le pendant défensif des labs offensifs.</p>
+            <div class="course-meta"><span>Scénarios</span><span>Freemium</span><span>SOC</span></div>
+            <a class="course-link" href="https://letsdefend.io/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="intermediaire" data-cat="web" data-search="pentesterlab labs web badges intermediate">
+            <div class="course-top"><span class="provider-tag">PentesterLab</span><span class="badge badge--intermediate">Intermédiaire</span></div>
+            <h3>PentesterLab</h3>
+            <p>Des exercices web ciblés, du JWT à la désérialisation, avec un système de badges. Une progression très pédagogique.</p>
+            <div class="course-meta"><span>Exercices</span><span>Payant / partiel</span><span>Web</span></div>
+            <a class="course-link" href="https://pentesterlab.com/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="ippsec youtube hack the box walkthrough avancé">
+            <div class="course-top"><span class="provider-tag">YouTube · IppSec</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>IppSec</h3>
+            <p>Des résolutions détaillées de machines Hack The Box : reconnaissance, exploitation, privesc et réflexion à voix haute.</p>
+            <div class="course-meta"><span>Continu</span><span>Gratuit</span><span>Chaîne YouTube</span></div>
+            <a class="course-link" href="https://www.youtube.com/@ippsec" target="_blank" rel="noopener noreferrer">Voir la chaîne <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="liveoverflow youtube exploitation binaire recherche vulnérabilités">
+            <div class="course-top"><span class="provider-tag">YouTube · LiveOverflow</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>LiveOverflow</h3>
+            <p>Exploitation binaire, reversing et recherche de vulnérabilités expliqués en profondeur. Exigeant et passionnant.</p>
+            <div class="course-meta"><span>Continu</span><span>Gratuit</span><span>Chaîne YouTube</span></div>
+            <a class="course-link" href="https://www.youtube.com/@LiveOverflow" target="_blank" rel="noopener noreferrer">Voir la chaîne <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="hacktricks wiki pentest privesc web active directory">
+            <div class="course-top"><span class="provider-tag">HackTricks</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>HackTricks</h3>
+            <p>Une encyclopédie technique du pentest : techniques web, privesc, Active Directory, cloud. À consulter pendant les labs.</p>
+            <div class="course-meta"><span>Référence</span><span>Gratuit</span><span>Wiki</span></div>
+            <a class="course-link" href="https://book.hacktricks.wiki/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="web" data-search="payloads all the things github payload web injection">
+            <div class="course-top"><span class="provider-tag">GitHub · Swissky</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>Payloads All The Things</h3>
+            <p>Une bibliothèque de payloads et de contournements classés par vulnérabilité. Utile pour comprendre, pas pour copier aveuglément.</p>
+            <div class="course-meta"><span>Référence</span><span>Gratuit</span><span>Open source</span></div>
+            <a class="course-link" href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="metasploit unleashed offsec cours exploitation">
+            <div class="course-top"><span class="provider-tag">OffSec</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>Metasploit Unleashed</h3>
+            <p>Un cours gratuit et complet sur Metasploit : modules, payloads, sessions et post-exploitation en lab.</p>
+            <div class="course-meta"><span>≈ 20 h</span><span>Gratuit</span><span>Framework</span></div>
+            <a class="course-link" href="https://www.offsec.com/metasploit-unleashed/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="tcm practical ethical hacking cours pentest complet">
+            <div class="course-top"><span class="provider-tag">TCM Security</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>Practical Ethical Hacking</h3>
+            <p>Un cours long et concret couvrant reconnaissance, exploitation, Active Directory et rapport. Souvent recommandé avant le PNPT.</p>
+            <div class="course-meta"><span>≈ 25 h</span><span>Payant</span><span>Vidéo</span></div>
+            <a class="course-link" href="https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="avance" data-cat="offensive" data-search="tryhackme red teaming parcours avancé red team">
+            <div class="course-top"><span class="provider-tag">TryHackMe</span><span class="badge badge--advanced">Avancé</span></div>
+            <h3>Red Teaming</h3>
+            <p>Un parcours orienté opérations offensives : C2, Active Directory, évasion et rapport. À aborder avec un cadre éthique solide.</p>
+            <div class="course-meta"><span>≈ 40 h</span><span>Freemium</span><span>Parcours</span></div>
+            <a class="course-link" href="https://tryhackme.com/path/outline/redteam" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="pro" data-cat="offensive" data-search="hack the box pro labs entreprise active directory avancé">
+            <div class="course-top"><span class="provider-tag">Hack The Box</span><span class="badge badge--pro">Pro</span></div>
+            <h3>Pro Labs</h3>
+            <p>Des environnements d'entreprise complets et persistants pour s'entraîner à des chaînes d'attaque réalistes.</p>
+            <div class="course-meta"><span>Labs</span><span>Payant</span><span>Entreprise</span></div>
+            <a class="course-link" href="https://www.hackthebox.com/hacker/pro-labs" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="pro" data-cat="offensive" data-search="offsec pen-200 oscp certification exploitation">
+            <div class="course-top"><span class="provider-tag">OffSec</span><span class="badge badge--pro">Pro</span></div>
+            <h3>PEN-200 / OSCP</h3>
+            <p>La certification pratique de référence. Examen exigeant, méthodologie complète et culture du rapport. Un objectif de plusieurs mois.</p>
+            <div class="course-meta"><span>Certification</span><span>Payant</span><span>Examen 24 h</span></div>
+            <a class="course-link" href="https://www.offsec.com/courses/pen-200/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="pro" data-cat="defense" data-search="mitre att&ck framework red team détection">
+            <div class="course-top"><span class="provider-tag">MITRE</span><span class="badge badge--pro">Pro</span></div>
+            <h3>MITRE ATT&amp;CK</h3>
+            <p>La base de connaissances des tactiques et techniques adverses. Le langage commun entre red team et défense.</p>
+            <div class="course-meta"><span>Référence</span><span>Gratuit</span><span>Framework</span></div>
+            <a class="course-link" href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="course-card card" data-level="pro" data-cat="defense" data-search="anssi cyber gouv fr recommandations sécurité france">
+            <div class="course-top"><span class="provider-tag">ANSSI</span><span class="badge badge--pro">Pro</span></div>
+            <h3>Guides &amp; recommandations ANSSI</h3>
+            <p>Les guides de référence français : durcissement, hygiène, gestion de crise et sécurité des systèmes industriels.</p>
+            <div class="course-meta"><span>Référence</span><span>Gratuit</span><span>Français</span></div>
+            <a class="course-link" href="https://cyber.gouv.fr/" target="_blank" rel="noopener noreferrer">Voir la ressource <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+
+        <div class="empty-state" id="course-empty" hidden>
+          <strong>Aucune ressource ne correspond.</strong>
+          Essayez un autre mot-clé ou revenez au niveau « Tous ».
+        </div>
+
+        <div class="steps mt-3">
+          <article class="card step reveal">
+            <span class="step__num">01</span>
+            <h3>Un parcours principal</h3>
+            <p>Choisissez une plateforme par phase (TryHackMe, HTB Academy, PortSwigger). Éviter de papillonner est la première optimisation.</p>
+          </article>
+          <article class="card step reveal" style="--delay:.06s">
+            <span class="step__num">02</span>
+            <h3>Un lab par notion</h3>
+            <p>Après chaque cours, faites un exercice immédiatement. Sans pratique, la notion disparaît en quelques jours.</p>
+          </article>
+          <article class="card step reveal" style="--delay:.12s">
+            <span class="step__num">03</span>
+            <h3>Des notes réutilisables</h3>
+            <p>Consignez commandes, résultats et raisonnement. Un writeup clair vaut mieux qu'une machine terminée sans trace.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <p class="kicker">Mettre en pratique</p>
+          <h2>Le catalogue ne remplace pas un terminal.</h2>
+          <p>Ouvrez un des six labs, capturez le flag, puis revenez suivre les ressources qui correspondent à votre niveau.</p>
+          <div class="cta-actions">
+            <a class="btn btn--primary" href="labs.html">Voir les labs</a>
+            <a class="btn btn--ghost" href="parcours.html">Revenir au parcours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="logo-text">HackLab <small>Academy</small></span>
+          </a>
+          <p>Un parcours pédagogique indépendant pour apprendre la sécurité offensive de manière structurée, pratique et responsable.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Apprendre</h3>
+          <a href="parcours.html">Parcours complet</a>
+          <a href="cours.html">Catalogue de cours</a>
+          <a href="labs.html">Labs interactifs</a>
+          <a href="ressources.html">Outils &amp; ressources</a>
+        </div>
+        <div class="footer-col">
+          <h3>Cadre</h3>
+          <a href="ethique.html">Éthique &amp; légal</a>
+          <a href="ethique.html#divulgation">Divulgation responsable</a>
+          <a href="ethique.html#sources">Sources &amp; crédits</a>
+          <a href="ethique.html#avertissement">Avertissement</a>
+        </div>
+        <div class="footer-col">
+          <h3>Avant de continuer</h3>
+          <p>Les labs sont volontairement vulnérables, mais isolés et exécutés localement. N'attaquez jamais un système sans autorisation écrite.</p>
+          <p class="footer-warning">Apprendre, tester, protéger.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> HackLab Academy · Projet pédagogique indépendant</p>
+        <p><strong>0 tracker · 0 compte · 0 donnée collectée</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

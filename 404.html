@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page introuvable — HackLab Academy</title>
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée. Revenez au parcours, aux cours ou aux labs HackLab Academy.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="parcours.html">Parcours</a>
+        <a href="cours.html">Cours</a>
+        <a href="labs.html">Labs</a>
+        <a href="ressources.html">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero" style="min-height:70vh;display:flex;align-items:center">
+      <div class="container" style="text-align:center">
+        <p class="kicker" style="justify-content:center">Erreur 404</p>
+        <h1 style="font-size:clamp(3rem,9vw,7rem);margin:6px 0 10px">Chemin introuvable.</h1>
+        <p class="lead" style="max-width:620px;margin:0 auto 28px">Cette page n'existe pas, a été déplacée ou tente de vous faire sortir du périmètre. Revenez sur un chemin connu.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn--primary" href="index.html">Retour à l'accueil</a>
+          <a class="btn btn--ghost" href="labs.html">Ouvrir les labs</a>
+        </div>
+        <p class="dim mono" style="margin-top:28px;font-size:.78rem">HTTP 404 · Aucun système réel n'a été consulté.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:0;padding-top:0">
+        <p>© <span data-year>2026</span> HackLab Academy · Site pédagogique</p>
+        <p><a href="labs.html">Tous les labs</a> · <a href="ethique.html">Cadre légal</a> · <span class="footer-warning">Aucune cible réelle</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

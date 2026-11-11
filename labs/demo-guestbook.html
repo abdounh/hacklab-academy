@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aperçu isolé — livre d'or NeoCorp</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: transparent; }
+    body {
+      padding: 0;
+      color: #cbd5e1;
+      font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .echo {
+      min-height: 54px;
+      padding: 12px 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.22);
+      border-radius: 8px;
+      background: rgba(8, 12, 21, 0.6);
+      overflow-wrap: anywhere;
+    }
+    .echo:empty::before {
+      content: "Votre message apparaîtra ici…";
+      color: #475569;
+    }
+    .echo img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <div class="echo" id="echo"></div>
+
+  <script>
+    (function () {
+      var echo = document.getElementById("echo");
+      var lastToken = -1;
+
+      function notifyExecution() {
+        parent.postMessage({ type: "hla-xss-executed" }, "*");
+      }
+
+      window.alert = function () { notifyExecution(); };
+      window.prompt = function () { notifyExecution(); return null; };
+      window.confirm = function () { notifyExecution(); return false; };
+
+      window.addEventListener("message", function (event) {
+        if (event.source !== parent) return;
+        var data = event.data;
+        if (!data || data.type !== "hla-render") return;
+        if (data.token === lastToken) return;
+        lastToken = data.token;
+        echo.innerHTML = String(data.payload || "");
+      });
+    })();
+  </script>
+</body>
+</html>

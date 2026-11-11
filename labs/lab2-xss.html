@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 02 — Le formulaire bavard (XSS) | HackLab Academy</title>
+  <meta name="description" content="Lab débutant : exploitez un XSS réfléchi dans un livre d'or simulé, capturez le flag et apprenez les correctifs d'encodage.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/labs.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="../index.html">Accueil</a>
+        <a href="../parcours.html">Parcours</a>
+        <a href="../cours.html">Cours</a>
+        <a href="../labs.html" aria-current="page">Labs</a>
+        <a href="../ressources.html">Ressources</a>
+        <a href="../ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="../parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="lab-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html">Accueil</a><span>/</span><a href="../labs.html">Labs</a><span>/</span><span>Lab 02</span>
+        </nav>
+        <div class="lab-title-row">
+          <div>
+            <div class="lab-meta">
+              <span class="badge badge--beginner">Débutant</span>
+              <span class="badge">15 min</span>
+              <span class="badge">XSS réfléchi</span>
+            </div>
+            <h1>Le formulaire bavard</h1>
+            <p class="lead">Le livre d'or de NeoCorp affiche chaque message sans le filtrer. Votre objectif : faire exécuter du JavaScript par la page, comme le ferait un attaquant.</p>
+          </div>
+          <span class="lab-hero__hint">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Démonstration locale
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-body">
+      <div class="container">
+        <div class="lab-layout">
+          <div class="lab-main">
+            <article class="lab-panel">
+              <span class="scenario-tag">Briefing</span>
+              <h2>Un livre d'or, un rendu trop confiant.</h2>
+              <p>Le site affiche votre message grâce à <span class="code">innerHTML</span>. Tout ce que vous saisissez est donc interprété comme du HTML, y compris des gestionnaires d'événements.</p>
+              <ul class="brief-list">
+                <li><strong>Objectif :</strong> déclencher du JavaScript dans la page et récupérer le flag.</li>
+                <li><strong>Indice technique :</strong> le champ n'est pas échappé avant insertion dans le DOM.</li>
+                <li><strong>Périmètre :</strong> ce laboratoire uniquement. Aucun serveur, aucune victime réelle.</li>
+              </ul>
+              <div class="lab-warning">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <p><strong>Important :</strong> ce lab est volontairement vulnérable. Le code injecté s'exécute dans un cadre isolé (iframe sandbox) sur votre appareil, jamais dans la page principale. Ne reproduisez jamais ce test sur un site tiers.</p>
+              </div>
+            </article>
+
+            <article class="lab-panel">
+              <div class="lab-panel__head">
+                <h2>Le livre d'or</h2>
+                <span class="badge" id="xss-status">En attente</span>
+              </div>
+              <div class="mock-browser">
+                <div class="mock-browser__bar">
+                  <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="mock-browser__url">https://neocorp.example/livre-dor</span>
+                </div>
+                <div class="mock-browser__body">
+                  <div class="xss-stage">
+                    <form id="guestbook-form" autocomplete="off">
+                      <div class="field">
+                        <label for="guestbook-input">Votre message</label>
+                        <input class="input" type="text" id="guestbook-input" placeholder="Laissez un message…" maxlength="300">
+                      </div>
+                      <div class="btn-row">
+                        <button class="btn btn--primary btn--sm" type="submit">Publier le message</button>
+                        <button class="btn btn--ghost btn--sm" type="button" id="xss-reset">Effacer le rendu</button>
+                      </div>
+                    </form>
+                    <div class="guestbook">
+                      <div class="guestbook__head"><i>A</i> Aperçu public — NeoCorp</div>
+                      <iframe
+                        class="xss-sandbox"
+                        id="guestbook-frame"
+                        title="Aperçu public isolé dans une iframe sandbox"
+                        sandbox="allow-scripts"
+                        referrerpolicy="no-referrer"
+                        src="demo-guestbook.html"
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2">
+                <p class="dim" style="font-size:.78rem;margin-bottom:8px">Le code vulnérable, simplifié :</p>
+                <pre class="code-block"><span class="c">&lt;!-- rendu sans échappement --&gt;</span>
+preview.innerHTML = userInput;</pre>
+              </div>
+            </article>
+
+            <article class="lab-panel">
+              <h2>Valider le flag</h2>
+              <p>Lorsque le XSS s'exécute, une fenêtre de ce laboratoire affiche le flag. Recopiez-le ici.</p>
+              <form class="flag-form" id="flag-form">
+                <label class="sr-only" for="flag-input">Flag</label>
+                <input class="input" type="text" id="flag-input" placeholder="HACKLAB{...}" autocomplete="off" spellcheck="false">
+                <button class="btn btn--primary" type="submit">Valider le flag</button>
+              </form>
+              <p class="lab-feedback" id="flag-feedback" aria-live="polite"></p>
+
+              <div class="lab-success" id="lab-success" hidden>
+                <h3>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Flag capturé
+                </h3>
+                <span class="flag-value"></span>
+                <p>Vous avez déclenché un XSS réfléchi : la charge est renvoyée par la page et exécutée dans le contexte du site. Un attaquant pourrait voler une session, modifier l'apparence du site ou piéger les visiteurs.</p>
+                <p><strong>Correctifs :</strong> échapper les sorties selon le contexte, éviter <span class="mono">innerHTML</span> pour les données utilisateur, utiliser une politique CSP stricte, marquer les cookies sensibles <span class="mono">HttpOnly</span> et employer un assainisseur éprouvé si du HTML est réellement nécessaire.</p>
+              </div>
+
+              <div class="mt-2">
+                <button class="reset-link" type="button" data-reset-lab>Réinitialiser ce lab</button>
+              </div>
+            </article>
+
+            <nav class="lab-nav" aria-label="Navigation entre les labs">
+              <a href="lab1-source.html"><span>Lab précédent</span>01 — Dans l'ombre du code source</a>
+              <a href="lab3-idor.html"><span>Lab suivant</span>03 — La facture de trop</a>
+            </nav>
+          </div>
+
+          <aside class="lab-sidebar">
+            <div class="side-card">
+              <h2>Fiche du lab</h2>
+              <div class="side-meta"><span>Difficulté</span><strong>Débutant</strong></div>
+              <div class="side-meta"><span>Durée</span><strong>15 min</strong></div>
+              <div class="side-meta"><span>Type</span><strong>XSS réfléchi</strong></div>
+              <p class="flag-format">HACKLAB{...}</p>
+            </div>
+
+            <div class="side-card">
+              <h2>Indices</h2>
+              <details class="hint">
+                <summary>Indice 1 — Ce qui est interprété</summary>
+                <div class="hint-body"><p>Le message est inséré via <span class="code">innerHTML</span>. Les balises HTML sont donc interprétées par le navigateur au lieu d'être affichées comme du texte.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 2 — Les scripts ne s'exécutent pas toujours</summary>
+                <div class="hint-body"><p>Une balise <span class="code">&lt;script&gt;</span> injectée par <span class="code">innerHTML</span> ne s'exécute pas. Utilisez plutôt un attribut événementiel sur un élément qui déclenche une erreur de chargement.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 3 — Une payload classique</summary>
+                <div class="hint-body">
+                  <p>Essayez :</p>
+                  <pre class="code-block">&lt;img src=x onerror=alert(1)&gt;</pre>
+                  <button class="btn btn--ghost btn--sm" type="button" data-copy="&lt;img src=x onerror=alert(1)&gt;">Copier la payload</button>
+                </div>
+              </details>
+            </div>
+
+            <div class="side-card">
+              <h2>Le réflexe</h2>
+              <p>Face à une entrée reflétée, demandez-vous toujours : « où ce texte est-il réinséré, et dans quel contexte ? » HTML, attribut, URL et JavaScript n'ont pas les mêmes règles d'encodage.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="xss-modal" id="xss-modal" role="dialog" aria-modal="true" aria-labelledby="xss-modal-title" hidden>
+    <div class="xss-modal__box">
+      <span class="scenario-tag">XSS déclenché</span>
+      <h3 id="xss-modal-title">Le navigateur a exécuté votre code.</h3>
+      <p>Votre payload a été interprétée par la page. Dans un site réel, ce JavaScript s'exécuterait avec les privilèges de la victime.</p>
+      <span class="flag-value" id="xss-modal-flag"></span>
+      <button class="btn btn--primary btn--block" type="button" id="xss-close">Fermer et valider le flag</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:0;padding-top:0">
+        <p>© <span data-year>2026</span> HackLab Academy · Lab pédagogique local</p>
+        <p><a href="../labs.html">Tous les labs</a> · <a href="../ethique.html">Cadre légal</a> · <span class="footer-warning">Aucune cible réelle</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/lab-core.js"></script>
+  <script>
+    var XSS_FLAG = "HACKLAB{xss_is_not_a_joke}";
+
+    (function () {
+      var form = document.getElementById("guestbook-form");
+      var input = document.getElementById("guestbook-input");
+      var frame = document.getElementById("guestbook-frame");
+      var modal = document.getElementById("xss-modal");
+      var closeButton = document.getElementById("xss-close");
+      var status = document.getElementById("xss-status");
+      var flagSlot = document.getElementById("xss-modal-flag");
+      var triggered = false;
+      var renderToken = 0;
+
+      function revealFlag() {
+        if (triggered) return;
+        triggered = true;
+        flagSlot.textContent = XSS_FLAG;
+        modal.hidden = false;
+        status.textContent = "Code exécuté";
+        status.className = "badge badge--danger";
+        closeButton.focus();
+      }
+
+      function renderPreview(payload) {
+        var token = ++renderToken;
+        var message = { type: "hla-render", payload: payload, token: token };
+        frame.contentWindow.postMessage(message, "*");
+        window.setTimeout(function () {
+          if (token === renderToken) frame.contentWindow.postMessage(message, "*");
+        }, 250);
+      }
+
+      window.addEventListener("message", function (event) {
+        if (event.source !== frame.contentWindow) return;
+        if (event.data && event.data.type === "hla-xss-executed") revealFlag();
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        renderPreview(input.value);
+      });
+
+      closeButton.addEventListener("click", function () {
+        modal.hidden = true;
+      });
+
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) modal.hidden = true;
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !modal.hidden) modal.hidden = true;
+      });
+
+      document.getElementById("xss-reset").addEventListener("click", function () {
+        renderPreview("");
+        input.value = "";
+        modal.hidden = true;
+        triggered = false;
+        status.textContent = "En attente";
+        status.className = "badge";
+        input.focus();
+      });
+    })();
+
+    HLA.initLab({
+      id: "lab2-xss",
+      flag: XSS_FLAG,
+      form: "flag-form",
+      input: "flag-input",
+      feedback: "flag-feedback",
+      success: "lab-success"
+    });
+  </script>
+</body>
+</html>

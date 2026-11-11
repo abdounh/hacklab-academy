@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outils &amp; ressources — HackLab Academy</title>
+  <meta name="description" content="Boîte à outils du pentester : Nmap, Burp Suite, Wireshark, ffuf, Hashcat, Metasploit, plateformes d'entraînement, livres et certifications.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="parcours.html">Parcours</a>
+        <a href="cours.html">Cours</a>
+        <a href="labs.html">Labs</a>
+        <a href="ressources.html" aria-current="page">Ressources</a>
+        <a href="ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero">
+      <div class="container">
+        <p class="kicker">Boîte à outils · Plateformes · Livres</p>
+        <h1>Tout ce qu'il faut,<br><span class="text-gradient">rien de superflu.</span></h1>
+        <p class="lead">Les outils utilisés en lab, les plateformes pour pratiquer, les chaînes à suivre et les livres qui structurent durablement. Une sélection courte, avec les liens officiels.</p>
+        <div class="notice notice--info mt-2">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Un outil ne remplace pas une méthode.</strong> Apprenez d'abord ce que fait chaque outil et dans quel cadre l'utiliser. Les liens pointent vers les sites officiels ou les dépôts des projets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">01 · Outils</p>
+              <h2>La panoplie du pentester.</h2>
+              <p>À installer dans une VM dédiée. Chaque outil doit être utilisé uniquement dans un périmètre autorisé.</p>
+            </div>
+          </div>
+
+          <div class="resource-grid">
+            <article class="tool-card card">
+              <span class="tool-cat">Réseau · Découverte</span>
+              <h3>Nmap</h3>
+              <p>Découverte d'hôtes, scan de ports, détection de services et scripts NSE. La base de la reconnaissance réseau.</p>
+              <a href="https://nmap.org/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Web · Proxy</span>
+              <h3>Burp Suite</h3>
+              <p>Interception, modification et rejeu de requêtes HTTP. La version Community suffit pour débuter les labs.</p>
+              <a href="https://portswigger.net/burp" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Réseau · Analyse</span>
+              <h3>Wireshark</h3>
+              <p>Analyse de paquets pour comprendre TCP, DNS, HTTP et TLS. Indispensable pour relier théorie et trafic réel.</p>
+              <a href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Web · Énumération</span>
+              <h3>ffuf</h3>
+              <p>Fuzzing rapide de répertoires, paramètres et vhosts. À combiner avec une wordlist adaptée et un débit raisonnable.</p>
+              <a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener noreferrer">Dépôt GitHub</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Web · Énumération</span>
+              <h3>Gobuster</h3>
+              <p>Alternative simple pour énumérer répertoires, DNS et vhosts. Utile pour comparer les approches.</p>
+              <a href="https://github.com/OJ/gobuster" target="_blank" rel="noopener noreferrer">Dépôt GitHub</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Web · Injection</span>
+              <h3>sqlmap</h3>
+              <p>Détection et exploitation assistée d'injections SQL. À réserver aux labs et aux audits autorisés.</p>
+              <a href="https://sqlmap.org/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Authentification</span>
+              <h3>Hydra</h3>
+              <p>Tests de robustesse d'authentification par dictionnaire. Comprendre les limites et les défenses associées.</p>
+              <a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener noreferrer">Dépôt GitHub</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Mots de passe</span>
+              <h3>Hashcat</h3>
+              <p>Récupération de mots de passe à partir de hashes, avec GPU. Le coût d'un hash devient concret.</p>
+              <a href="https://hashcat.net/hashcat/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Mots de passe</span>
+              <h3>John the Ripper</h3>
+              <p>Cassage de hashes et audit de mots de passe. Un classique pour les labs système.</p>
+              <a href="https://www.openwall.com/john/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Exploitation</span>
+              <h3>Metasploit</h3>
+              <p>Framework de modules et de payloads pour les labs. Comprendre ce qui se passe derrière chaque module.</p>
+              <a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Réseau · Transfert</span>
+              <h3>Ncat</h3>
+              <p>Connexions TCP/UDP, transferts et écoute réseau. Un couteau suisse pédagogique pour comprendre les sockets.</p>
+              <a href="https://nmap.org/ncat/" target="_blank" rel="noopener noreferrer">Documentation</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Active Directory</span>
+              <h3>BloodHound</h3>
+              <p>Cartographie des relations et chemins d'attaque dans Active Directory. À utiliser sur un lab isolé.</p>
+              <a href="https://bloodhound.readthedocs.io/" target="_blank" rel="noopener noreferrer">Documentation</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Reverse · Analyse</span>
+              <h3>Ghidra</h3>
+              <p>Désassembleur et décompilateur open source de la NSA. Pour comprendre un binaire avant d'aller plus loin.</p>
+              <a href="https://ghidra-sre.org/" target="_blank" rel="noopener noreferrer">Site officiel</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">OSINT</span>
+              <h3>Amass</h3>
+              <p>Cartographie de surface d'attaque et découverte de sous-domaines. À limiter aux cibles autorisées.</p>
+              <a href="https://owasp.org/www-project-amass/" target="_blank" rel="noopener noreferrer">Projet OWASP</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Web · Audit</span>
+              <h3>Nikto</h3>
+              <p>Scan de serveurs web et détection de configurations courantes. Un point de départ, jamais une conclusion.</p>
+              <a href="https://github.com/sullo/nikto" target="_blank" rel="noopener noreferrer">Dépôt GitHub</a>
+            </article>
+            <article class="tool-card card">
+              <span class="tool-cat">Encodage · Analyse</span>
+              <h3>CyberChef</h3>
+              <p>Enchaînez décodages, transformations et analyses dans le navigateur. Parfait pour les challenges de crypto et forensic.</p>
+              <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer">Ouvrir CyberChef</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">02 · Pratique</p>
+              <h2>Plateformes d'entraînement.</h2>
+              <p>Un compte, un objectif, des labs. Commencez par une plateforme guidée puis diversifiez.</p>
+            </div>
+          </div>
+
+          <div class="link-list">
+            <a href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer">
+              <span><strong>TryHackMe</strong><small>Salles guidées, parcours métier et labs accessibles aux débutants.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">
+              <span><strong>Hack The Box</strong><small>Machines, Starting Point, Academy et environnements Pro Labs.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">
+              <span><strong>PortSwigger Web Security Academy</strong><small>La meilleure progression gratuite en sécurité web, avec des centaines de labs.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://www.root-me.org/" target="_blank" rel="noopener noreferrer">
+              <span><strong>Root-Me</strong><small>Challenges francophones classés par difficulté, avec classement et validation.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://overthewire.org/wargames/" target="_blank" rel="noopener noreferrer">
+              <span><strong>OverTheWire</strong><small>Wargames Linux et web : Bandit, Natas et d'autres parcours gratuits.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://picoctf.org/" target="_blank" rel="noopener noreferrer">
+              <span><strong>picoCTF</strong><small>CTF pédagogique, parfait pour une première compétition.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://hackropole.fr/" target="_blank" rel="noopener noreferrer">
+              <span><strong>Hackropole</strong><small>Archives des challenges du 404 CTF, en français, avec corrections.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://www.vulnhub.com/" target="_blank" rel="noopener noreferrer">
+              <span><strong>VulnHub</strong><small>Machines virtuelles hors ligne pour s'entraîner chez soi.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener noreferrer">
+              <span><strong>OWASP Juice Shop</strong><small>Application web vulnérable moderne, à héberger en local.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://blueteamlabs.online/" target="_blank" rel="noopener noreferrer">
+              <span><strong>Blue Team Labs Online</strong><small>Le versant défensif : investigation, forensics et réponse à incident.</small></span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">03 · Veille</p>
+              <h2>Chaînes YouTube à suivre.</h2>
+              <p>Pour observer une démarche complète, pas seulement une commande. Prenez des notes pendant le visionnage.</p>
+            </div>
+          </div>
+          <div class="link-list">
+            <a href="https://www.youtube.com/@ippsec" target="_blank" rel="noopener noreferrer"><span><strong>IppSec</strong><small>Résolutions Hack The Box détaillées, du scan au privesc.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.youtube.com/@_JohnHammond" target="_blank" rel="noopener noreferrer"><span><strong>John Hammond</strong><small>CTF, OSINT, analyse de malware et pédagogie accessible.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.youtube.com/@LiveOverflow" target="_blank" rel="noopener noreferrer"><span><strong>LiveOverflow</strong><small>Recherche de vulnérabilités et exploitation binaire, en profondeur.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.youtube.com/@NetworkChuck" target="_blank" rel="noopener noreferrer"><span><strong>NetworkChuck</strong><small>Réseau, Linux et premiers pas, avec beaucoup d'énergie.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.youtube.com/@TCMSecurityAcademy" target="_blank" rel="noopener noreferrer"><span><strong>The Cyber Mentor</strong><small>Pentest, Active Directory et conseils de carrière sans détour.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">04 · Lecture</p>
+              <h2>Livres qui tiennent dans le temps.</h2>
+              <p>Une sélection courte. Lisez un chapitre, testez-le en lab, puis revenez. Aucun lien d'affiliation.</p>
+            </div>
+          </div>
+          <div class="book-grid">
+            <div class="book"><strong>The Web Application Hacker's Handbook</strong><span>Dafydd Stuttard &amp; Marcus Pinto</span><p>La référence historique du pentest web et de la méthodologie.</p></div>
+            <div class="book"><strong>Penetration Testing</strong><span>Georgia Weidman</span><p>Une introduction complète, pratique et progressive au pentest.</p></div>
+            <div class="book"><strong>The Hacker Playbook 3</strong><span>Peter Kim</span><p>Scénarios offensifs modernes et organisation d'un test d'intrusion.</p></div>
+            <div class="book"><strong>Hacking: The Art of Exploitation</strong><span>Jon Erickson</span><p>Comprendre la mémoire, les binaires et l'exploitation en profondeur.</p></div>
+            <div class="book"><strong>Black Hat Python</strong><span>Justin Seitz &amp; Tim Arnold</span><p>Automatisation et outils offensifs en Python, pour aller plus loin.</p></div>
+            <div class="book"><strong>Bug Bounty Bootcamp</strong><span>Vickie Li</span><p>Méthodologie de chasse aux vulnérabilités et rédaction de rapports.</p></div>
+          </div>
+        </div>
+
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">05 · Certifications</p>
+              <h2>Un repère, pas une fin en soi.</h2>
+              <p>Choisissez selon votre objectif : premier emploi, pentest web, entreprise ou expertise offensive.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Certification</th>
+                  <th scope="col">Niveau</th>
+                  <th scope="col">Orientation</th>
+                  <th scope="col">Quand la viser</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>CompTIA Security+</strong></td><td>Débutant</td><td>Fondamentaux &amp; employabilité</td><td>Après les bases théoriques, pour un premier poste.</td></tr>
+                <tr><td><strong>eJPT</strong></td><td>Débutant / intermédiaire</td><td>Pentest pratique</td><td>Après 3–6 mois de labs guidés.</td></tr>
+                <tr><td><strong>PNPT</strong></td><td>Intermédiaire</td><td>Pentest entreprise, AD, rapport</td><td>Après la phase 3 et plusieurs machines.</td></tr>
+                <tr><td><strong>HTB CPTS</strong></td><td>Avancé</td><td>Pentest complet</td><td>Après une pratique régulière et variée.</td></tr>
+                <tr><td><strong>OSCP (PEN-200)</strong></td><td>Avancé / pro</td><td>Exploitation et méthodologie</td><td>Après 6–12 mois de pratique sérieuse.</td></tr>
+                <tr><td><strong>BTL1</strong></td><td>Intermédiaire</td><td>Défense / SOC</td><td>Pour un profil analyste ou blue team.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="resource-block">
+          <div class="section-head">
+            <div>
+              <p class="kicker">06 · Écosystème français</p>
+              <h2>Des ressources en français.</h2>
+            </div>
+          </div>
+          <div class="link-list">
+            <a href="https://cyber.gouv.fr/" target="_blank" rel="noopener noreferrer"><span><strong>ANSSI</strong><small>Guides, recommandations et actualité de la cybersécurité en France.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener noreferrer"><span><strong>Cybermalveillance.gouv.fr</strong><small>Aide aux victimes, prévention et guides pratiques pour tous.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.yeswehack.com/" target="_blank" rel="noopener noreferrer"><span><strong>YesWeHack</strong><small>Plateforme européenne de bug bounty, avec des programmes encadrés.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="https://www.root-me.org/" target="_blank" rel="noopener noreferrer"><span><strong>Root-Me</strong><small>La plus grande communauté francophone de challenges sécurité.</small></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="notice mt-3">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p><strong>Rappel :</strong> la possession d'un outil n'autorise rien. Toute utilisation contre un système sans autorisation écrite est illégale et contraire à l'éthique de ce site. <a href="ethique.html" style="color:inherit;text-decoration:underline">Consulter le cadre légal</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <p class="kicker">Pratiquer maintenant</p>
+          <h2>La boîte à outils est prête. À vous de jouer.</h2>
+          <p>Les labs ne nécessitent aucune installation. Ouvrez-en un, lisez le contexte et essayez.</p>
+          <div class="cta-actions">
+            <a class="btn btn--primary" href="labs.html">Ouvrir les labs</a>
+            <a class="btn btn--ghost" href="parcours.html">Suivre le parcours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="HackLab Academy, accueil">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="logo-text">HackLab <small>Academy</small></span>
+          </a>
+          <p>Un parcours pédagogique indépendant pour apprendre la sécurité offensive de manière structurée, pratique et responsable.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Apprendre</h3>
+          <a href="parcours.html">Parcours complet</a>
+          <a href="cours.html">Catalogue de cours</a>
+          <a href="labs.html">Labs interactifs</a>
+          <a href="ressources.html">Outils &amp; ressources</a>
+        </div>
+        <div class="footer-col">
+          <h3>Cadre</h3>
+          <a href="ethique.html">Éthique &amp; légal</a>
+          <a href="ethique.html#divulgation">Divulgation responsable</a>
+          <a href="ethique.html#sources">Sources &amp; crédits</a>
+          <a href="ethique.html#avertissement">Avertissement</a>
+        </div>
+        <div class="footer-col">
+          <h3>Avant de continuer</h3>
+          <p>Les labs sont volontairement vulnérables, mais isolés et exécutés localement. N'attaquez jamais un système sans autorisation écrite.</p>
+          <p class="footer-warning">Apprendre, tester, protéger.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> HackLab Academy · Projet pédagogique indépendant</p>
+        <p><strong>0 tracker · 0 compte · 0 donnée collectée</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

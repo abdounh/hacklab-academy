@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoCorp Solutions — Construire demain, plus vite</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --ink: #122033;
+      --muted: #5a6b80;
+      --line: #e3e9f1;
+      --brand: #1d4ed8;
+      --brand-soft: #eef4ff;
+      --bg: #f7f9fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(960px, calc(100% - 40px)); margin: 0 auto; }
+    header { background: #fff; border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 62px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; }
+    .mark {
+      display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+      background: linear-gradient(145deg, #1d4ed8, #38bdf8); color: #fff; font-size: 12px;
+    }
+    .links { display: flex; gap: 18px; font-size: 0.82rem; color: var(--muted); }
+    .links a:hover { color: var(--brand); }
+    .cta {
+      padding: 8px 14px; border-radius: 7px; background: var(--brand); color: #fff;
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .hero { padding: 54px 0 44px; background: linear-gradient(180deg, #fff, #f7f9fc); }
+    .eyebrow { color: var(--brand); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    h1 { max-width: 600px; margin: 10px 0 14px; font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.12; letter-spacing: -0.03em; }
+    .hero p { max-width: 520px; margin: 0 0 22px; color: var(--muted); font-size: 0.94rem; }
+    .btn {
+      display: inline-block; padding: 10px 16px; border-radius: 7px; background: var(--brand);
+      color: #fff; font-size: 0.82rem; font-weight: 600;
+    }
+    .btn.ghost { margin-left: 6px; background: #fff; color: var(--ink); border: 1px solid var(--line); }
+    .section { padding: 38px 0; }
+    .section h2 { margin: 0 0 6px; font-size: 1.25rem; letter-spacing: -0.02em; }
+    .section > .wrap > p { margin: 0 0 20px; color: var(--muted); font-size: 0.85rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .card i { display: block; width: 28px; height: 28px; margin-bottom: 12px; border-radius: 7px; background: var(--brand-soft); }
+    .card h3 { margin: 0 0 4px; font-size: 0.9rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.78rem; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+    .stat { padding: 18px; border-radius: 10px; background: var(--brand-soft); }
+    .stat strong { display: block; font-size: 1.3rem; color: var(--brand); }
+    .stat span { color: var(--muted); font-size: 0.74rem; }
+    footer { margin-top: 20px; padding: 26px 0; border-top: 1px solid var(--line); background: #fff; color: var(--muted); font-size: 0.74rem; }
+    .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 640px) {
+      .links { display: none; }
+      .cards, .stats { grid-template-columns: 1fr; }
+      .hero { padding: 34px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><span class="mark">NC</span> NeoCorp</div>
+      <nav class="links" aria-label="Navigation NeoCorp">
+        <a href="#services">Solutions</a>
+        <a href="#chiffres">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="cta" href="#contact">Espace client</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Conseil · Digital · Infrastructure</p>
+        <h1>Construire demain, plus vite et plus simplement.</h1>
+        <p>NeoCorp accompagne les entreprises dans la modernisation de leurs plateformes, de leur cloud et de leurs opérations. Une équipe, un cap, des résultats mesurables.</p>
+        <a class="btn" href="#contact">Parler à un expert</a>
+        <a class="btn ghost" href="#services">Découvrir nos offres</a>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <h2>Nos expertises</h2>
+        <p>Trois pratiques, un seul objectif : rendre la technologie utile.</p>
+        <div class="cards">
+          <article class="card">
+            <i aria-hidden="true"></i>
+            <h3>Cloud &amp; plateformes</h3>
+            <p>Architecture, migration et maîtrise des coûts sur les environnements publics et privés.</p>
+          </article>
+          <article class="card">
+            <i aria-hidden="true"></i>
+            <h3>Data &amp; produits</h3>
+            <p>Des produits numériques utiles, rapides et maintenables, pensés pour les utilisateurs.</p>
+          </article>
+          <article class="card">
+            <i aria-hidden="true"></i>
+            <h3>Conseil &amp; delivery</h3>
+            <p>Des équipes intégrées à vos enjeux, du cadrage à la mise en production.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chiffres">
+      <div class="wrap">
+        <h2>NeoCorp en quelques chiffres</h2>
+        <p>Une entreprise fictive, créée uniquement pour ce laboratoire pédagogique.</p>
+        <div class="stats">
+          <div class="stat"><strong>120+</strong><span>collaborateurs</span></div>
+          <div class="stat"><strong>8</strong><span>pays</span></div>
+          <div class="stat"><strong>2014</strong><span>année de création</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <h2>Parlons de votre projet</h2>
+        <p>contact@neocorp.example · 01 23 45 67 89 · 14 rue des Docks, 75010 Paris</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© 2026 NeoCorp Solutions. Tous droits réservés.</span>
+      <span>Mentions légales · Confidentialité · Cookies</span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       DEV-NOTE (2026-09-14) — à supprimer avant mise en production
+       Accès de démonstration de l'espace client :
+         identifiant : demo-admin
+         secret      : HACKLAB{source_code_never_lies}
+       Ticket interne : NEO-4471 — ne pas partager avec le client.
+       ============================================================ -->
+
+  <script>
+    // TODO(dev): retirer la configuration de préproduction avant le go-live.
+    window.__NEOCORP__ = {
+      environment: "candidate",
+      build: "2026.09.14-rc1",
+      supportEmail: "support@neocorp.example"
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 05 — Devine mon mot de passe | HackLab Academy</title>
+  <meta name="description" content="Lab intermédiaire : simulez une attaque par dictionnaire contre un portail sans limitation de tentatives et découvrez les défenses.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/labs.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="../index.html">Accueil</a>
+        <a href="../parcours.html">Parcours</a>
+        <a href="../cours.html">Cours</a>
+        <a href="../labs.html" aria-current="page">Labs</a>
+        <a href="../ressources.html">Ressources</a>
+        <a href="../ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="../parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="lab-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html">Accueil</a><span>/</span><a href="../labs.html">Labs</a><span>/</span><span>Lab 05</span>
+        </nav>
+        <div class="lab-title-row">
+          <div>
+            <div class="lab-meta">
+              <span class="badge badge--intermediate">Intermédiaire</span>
+              <span class="badge">15 min</span>
+              <span class="badge">Authentification</span>
+            </div>
+            <h1>Devine mon mot de passe</h1>
+            <p class="lead">Le portail stagiaire de NeoCorp n'a ni limitation de tentatives, ni verrouillage, ni MFA. Lancez une attaque par dictionnaire simulée et comprenez pourquoi ces défenses sont indispensables.</p>
+          </div>
+          <span class="lab-hero__hint">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Simulation locale
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-body">
+      <div class="container">
+        <div class="lab-layout">
+          <div class="lab-main">
+            <article class="lab-panel">
+              <span class="scenario-tag">Briefing</span>
+              <h2>Un compte, aucune limite.</h2>
+              <p>L'application accepte un nombre illimité de tentatives. Un attaquant peut donc tester un dictionnaire de mots de passe courants jusqu'à trouver le bon, sans être ralenti ni bloqué.</p>
+              <ul class="brief-list">
+                <li><strong>Objectif :</strong> retrouver le mot de passe du compte stagiaire et capturer le flag.</li>
+                <li><strong>Compte ciblé :</strong> <span class="code">stagiaire@neocorp.example</span>.</li>
+                <li><strong>Observation :</strong> aucune limitation après plusieurs échecs.</li>
+                <li><strong>Périmètre :</strong> simulation locale, aucun serveur d'authentification réel.</li>
+              </ul>
+            </article>
+
+            <article class="lab-panel">
+              <div class="lab-panel__head">
+                <h2>Portail stagiaire</h2>
+                <span class="badge">Sans MFA</span>
+              </div>
+              <div class="mock-browser">
+                <div class="mock-browser__bar">
+                  <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="mock-browser__url">https://portal.neocorp.example/stagiaires</span>
+                </div>
+                <div class="mock-browser__body">
+                  <div class="scenario-tag">NeoCorp · Espace stagiaires</div>
+                  <p class="dim" style="font-size:.8rem;margin-bottom:14px">Compte : <span class="mono">stagiaire@neocorp.example</span></p>
+
+                  <form id="login-form" autocomplete="off">
+                    <div class="field">
+                      <label for="brute-password">Mot de passe</label>
+                      <input class="input input--mono" type="text" id="brute-password" placeholder="Votre essai…" autocomplete="off" spellcheck="false">
+                    </div>
+                    <div class="btn-row">
+                      <button class="btn btn--primary btn--sm" type="submit">Tenter la connexion</button>
+                    </div>
+                  </form>
+                  <p class="lab-feedback" id="login-feedback" aria-live="polite"></p>
+
+                  <div class="attack-console mt-2">
+                    <div class="attack-status">
+                      <span>Essais : <strong id="attack-count">0</strong></span>
+                      <span>Résultat : <strong id="attack-found">—</strong></span>
+                    </div>
+                    <div class="attempt-log" id="attempt-log" aria-live="polite">En attente d'une attaque…</div>
+                    <div class="btn-row">
+                      <button class="btn btn--primary btn--sm" type="button" id="start-attack">Lancer l'attaque par dictionnaire</button>
+                      <button class="btn btn--ghost btn--sm" type="button" id="stop-attack" disabled>Arrêter</button>
+                      <button class="btn btn--ghost btn--sm" type="button" id="reset-sim">Réinitialiser</button>
+                    </div>
+                  </div>
+
+                  <div class="sql-result" id="attack-result" hidden></div>
+
+                  <details class="hint mt-2">
+                    <summary>Voir la wordlist utilisée par la simulation</summary>
+                    <div class="hint-body">
+                      <pre class="code-block">password
+123456
+azerty
+motdepasse
+admin
+admin123
+neocorp
+bienvenue
+qwerty
+soleil2023
+sport
+marseille
+doudou
+bonjour
+secret
+chocolat
+vacances
+jean2022
+soleil2024
+NeoCorp!2024</pre>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </article>
+
+            <article class="lab-panel">
+              <h2>Valider le flag</h2>
+              <p>Une fois le mot de passe retrouvé, le flag s'affiche dans la console d'attaque.</p>
+              <form class="flag-form" id="flag-form">
+                <label class="sr-only" for="flag-input">Flag</label>
+                <input class="input" type="text" id="flag-input" placeholder="HACKLAB{...}" autocomplete="off" spellcheck="false">
+                <button class="btn btn--primary" type="submit">Valider le flag</button>
+              </form>
+              <p class="lab-feedback" id="flag-feedback" aria-live="polite"></p>
+
+              <div class="lab-success" id="lab-success" hidden>
+                <h3>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Flag capturé
+                </h3>
+                <span class="flag-value"></span>
+                <p>Le mot de passe était courant et le portail ne limitait pas les tentatives. En quelques secondes, un dictionnaire a suffi à compromettre le compte.</p>
+                <p><strong>Correctifs :</strong> limitation du débit et temporisation progressive, verrouillage temporaire, authentification multifacteur, politique de mots de passe moderne (longueur et vérification contre les fuites connues), hachage robuste (Argon2id, scrypt ou bcrypt) et surveillance des échecs répétés. Ne stockez jamais un mot de passe en clair.</p>
+              </div>
+
+              <div class="mt-2">
+                <button class="reset-link" type="button" data-reset-lab>Réinitialiser ce lab</button>
+              </div>
+            </article>
+
+            <nav class="lab-nav" aria-label="Navigation entre les labs">
+              <a href="lab4-sqli.html"><span>Lab précédent</span>04 — Le login qui avale tout</a>
+              <a href="lab6-crypto.html"><span>Lab suivant</span>06 — Le coffre mal fermé</a>
+            </nav>
+          </div>
+
+          <aside class="lab-sidebar">
+            <div class="side-card">
+              <h2>Fiche du lab</h2>
+              <div class="side-meta"><span>Difficulté</span><strong>Intermédiaire</strong></div>
+              <div class="side-meta"><span>Durée</span><strong>15 min</strong></div>
+              <div class="side-meta"><span>Type</span><strong>Brute force</strong></div>
+              <p class="flag-format">HACKLAB{...}</p>
+            </div>
+
+            <div class="side-card">
+              <h2>Indices</h2>
+              <details class="hint">
+                <summary>Indice 1 — Aucune limite</summary>
+                <div class="hint-body"><p>Le portail n'applique ni délai, ni verrouillage, ni MFA. Chaque essai est indépendant et instantané.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 2 — Le dictionnaire</summary>
+                <div class="hint-body"><p>Le bouton « Lancer l'attaque par dictionnaire » teste la liste fournie dans l'ordre. Laissez-la aller au bout.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 3 — Le schéma</summary>
+                <div class="hint-body"><p>Le mot de passe suit un classique « saison + année ». Il apparaît en fin de wordlist.</p></div>
+              </details>
+            </div>
+
+            <div class="side-card">
+              <h2>Le réflexe</h2>
+              <p>La robustesse d'un mot de passe ne compense pas l'absence de limitation. Les deux se complètent : un secret long, unique et une authentification multifacteur.</p>
+              <p class="dim" style="font-size:.76rem">La simulation s'exécute dans votre navigateur, sans requête réseau.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:0;padding-top:0">
+        <p>© <span data-year>2026</span> HackLab Academy · Lab pédagogique local</p>
+        <p><a href="../labs.html">Tous les labs</a> · <a href="../ethique.html">Cadre légal</a> · <span class="footer-warning">Aucune cible réelle</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/lab-core.js"></script>
+  <script>
+    (function () {
+      var FLAG = "HACKLAB{weak_password_no_ratelimit}";
+      var TARGET = "soleil2024";
+      var WORDLIST = [
+        "password", "123456", "azerty", "motdepasse", "admin", "admin123", "neocorp",
+        "bienvenue", "qwerty", "soleil2023", "sport", "marseille", "doudou", "bonjour",
+        "secret", "chocolat", "vacances", "jean2022", "soleil2024", "NeoCorp!2024"
+      ];
+
+      var form = document.getElementById("login-form");
+      var passwordInput = document.getElementById("brute-password");
+      var loginFeedback = document.getElementById("login-feedback");
+      var log = document.getElementById("attempt-log");
+      var countLabel = document.getElementById("attack-count");
+      var foundLabel = document.getElementById("attack-found");
+      var result = document.getElementById("attack-result");
+      var startButton = document.getElementById("start-attack");
+      var stopButton = document.getElementById("stop-attack");
+      var resetButton = document.getElementById("reset-sim");
+
+      var attempts = 0;
+      var running = false;
+      var timer = null;
+      var startTime = 0;
+
+      function setAttempts(value) {
+        attempts = value;
+        countLabel.textContent = String(attempts);
+      }
+
+      function appendLog(text, kind) {
+        var line = document.createElement("div");
+        if (kind) line.className = kind;
+        line.textContent = text;
+        log.appendChild(line);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function showFound() {
+        result.hidden = false;
+        result.className = "sql-result is-ok";
+        result.textContent = "Mot de passe trouvé : " + TARGET + "\nFlag : " + FLAG;
+        foundLabel.textContent = "Compte compromis";
+      }
+
+      function stopAttack(message) {
+        running = false;
+        if (timer) window.clearTimeout(timer);
+        timer = null;
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        if (message) {
+          loginFeedback.textContent = message;
+          loginFeedback.className = "lab-feedback";
+        }
+      }
+
+      function runAttack() {
+        var index = 0;
+        startTime = Date.now();
+        log.replaceChildren();
+        appendLog("[+] Wordlist chargée : " + WORDLIST.length + " entrées.", "info");
+        appendLog("[+] Limitation de débit : absente. Verrouillage : absent.", "info");
+        appendLog("[*] Démarrage des tentatives…", "info");
+
+        function attempt() {
+          if (!running) return;
+          var elapsed = ((Date.now() - startTime) / 1000).toFixed(1).padStart(4, "0");
+          var candidate = WORDLIST[index];
+          setAttempts(index + 1);
+
+          if (candidate === TARGET) {
+            appendLog("[" + elapsed + "s] " + candidate + " → SUCCÈS", "ok");
+            stopAttack();
+            showFound();
+            appendLog("[!] Aucun mécanisme de défense déclenché.", "ok");
+            return;
+          }
+
+          appendLog("[" + elapsed + "s] " + candidate + " → échec", "fail");
+          index += 1;
+
+          if (index >= WORDLIST.length) {
+            stopAttack("Dictionnaire épuisé — aucune correspondance.");
+            appendLog("[*] Fin de la wordlist.", "info");
+            return;
+          }
+          timer = window.setTimeout(attempt, 180);
+        }
+
+        attempt();
+      }
+
+      startButton.addEventListener("click", function () {
+        if (running) return;
+        running = true;
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        loginFeedback.textContent = "";
+        runAttack();
+      });
+
+      stopButton.addEventListener("click", function () {
+        if (!running) return;
+        stopAttack("Attaque interrompue manuellement.");
+        appendLog("[*] Attaque interrompue.", "info");
+      });
+
+      resetButton.addEventListener("click", function () {
+        running = false;
+        if (timer) window.clearTimeout(timer);
+        timer = null;
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        setAttempts(0);
+        foundLabel.textContent = "—";
+        log.textContent = "En attente d'une attaque…";
+        result.hidden = true;
+        result.textContent = "";
+        passwordInput.value = "";
+        loginFeedback.textContent = "";
+        loginFeedback.className = "lab-feedback";
+        passwordInput.focus();
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var value = passwordInput.value;
+        setAttempts(attempts + 1);
+
+        if (value === TARGET) {
+          stopAttack();
+          loginFeedback.textContent = "Authentification réussie avec le mot de passe « " + TARGET + " ».";
+          loginFeedback.className = "lab-feedback is-ok";
+          appendLog("[manuel] " + value + " → SUCCÈS", "ok");
+          showFound();
+          return;
+        }
+
+        loginFeedback.textContent = "Mot de passe incorrect. Essai n°" + attempts + ". Aucun verrouillage n'a été déclenché.";
+        loginFeedback.className = "lab-feedback is-error";
+        appendLog("[manuel] " + value + " → échec", "fail");
+      });
+    })();
+
+    HLA.initLab({
+      id: "lab5-bruteforce",
+      flag: "HACKLAB{weak_password_no_ratelimit}",
+      form: "flag-form",
+      input: "flag-input",
+      feedback: "flag-feedback",
+      success: "lab-success"
+    });
+  </script>
+</body>
+</html>

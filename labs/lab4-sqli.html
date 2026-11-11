@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 04 — Le login qui avale tout (SQLi) | HackLab Academy</title>
+  <meta name="description" content="Lab intermédiaire : contournez un écran de connexion dont la requête SQL est concaténée. Simulation pédagogique locale et correctifs.">
+  <meta name="theme-color" content="#05070c">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; script-src 'self' file: 'unsafe-inline'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' file:; object-src 'none'; base-uri 'none'; form-action 'self' file:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/labs.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="HackLab Academy, accueil">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 27 7.5v8c0 6.5-4.6 10.8-11 12.5C9.6 26.3 5 22 5 15.5v-8L16 3Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m11.5 12.5 3.5 3.5-3.5 3.5M18 19.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">HackLab <small>Academy</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="../index.html">Accueil</a>
+        <a href="../parcours.html">Parcours</a>
+        <a href="../cours.html">Cours</a>
+        <a href="../labs.html" aria-current="page">Labs</a>
+        <a href="../ressources.html">Ressources</a>
+        <a href="../ethique.html">Éthique</a>
+        <a class="btn btn--sm btn--primary nav-cta" href="../parcours.html">Commencer</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="lab-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html">Accueil</a><span>/</span><a href="../labs.html">Labs</a><span>/</span><span>Lab 04</span>
+        </nav>
+        <div class="lab-title-row">
+          <div>
+            <div class="lab-meta">
+              <span class="badge badge--intermediate">Intermédiaire</span>
+              <span class="badge">20 min</span>
+              <span class="badge">Injection SQL</span>
+            </div>
+            <h1>Le login qui avale tout</h1>
+            <p class="lead">Le portail d'administration de NeoCorp construit sa requête SQL par concaténation. Votre mission : utiliser la logique de la requête pour vous authentifier sans mot de passe.</p>
+          </div>
+          <span class="lab-hero__hint">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Simulation simplifiée
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-body">
+      <div class="container">
+        <div class="lab-layout">
+          <div class="lab-main">
+            <article class="lab-panel">
+              <span class="scenario-tag">Briefing</span>
+              <h2>Une chaîne de caractères, pas une requête.</h2>
+              <p>L'application insère vos identifiants directement dans la requête SQL au lieu de les passer comme paramètres. Une apostrophe mal placée peut donc modifier la logique de la base.</p>
+              <ul class="brief-list">
+                <li><strong>Objectif :</strong> contourner l'authentification et obtenir le flag.</li>
+                <li><strong>Contexte :</strong> simulation locale, aucune base de données réelle n'est connectée.</li>
+                <li><strong>À observer :</strong> la requête affichée évolue en temps réel avec vos saisies.</li>
+              </ul>
+              <div class="lab-warning">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <p><strong>Simulation pédagogique.</strong> La détection est volontairement simplifiée pour se concentrer sur le raisonnement. Ne testez jamais une injection sur un système sans autorisation écrite.</p>
+              </div>
+            </article>
+
+            <article class="lab-panel">
+              <div class="lab-panel__head">
+                <h2>Portail administrateur</h2>
+                <span class="badge" id="login-status">Non authentifié</span>
+              </div>
+              <div class="mock-browser">
+                <div class="mock-browser__bar">
+                  <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="mock-browser__url">https://crm.neocorp.example/admin/login</span>
+                </div>
+                <div class="mock-browser__body">
+                  <div class="scenario-tag">NeoCorp CRM · Accès restreint</div>
+                  <form id="login-form" autocomplete="off">
+                    <div class="field">
+                      <label for="sql-username">Nom d'utilisateur</label>
+                      <input class="input input--mono" type="text" id="sql-username" placeholder="admin" spellcheck="false">
+                    </div>
+                    <div class="field">
+                      <label for="sql-password">Mot de passe</label>
+                      <input class="input input--mono" type="password" id="sql-password" placeholder="••••••••" autocomplete="off">
+                    </div>
+                    <button class="btn btn--primary btn--sm" type="submit">Se connecter</button>
+                  </form>
+
+                  <p class="dim mt-2" style="font-size:.72rem;margin-bottom:6px">Requête exécutée (journal de débogage) :</p>
+                  <pre class="query-preview" id="query-preview"></pre>
+                  <div class="sql-result" id="sql-result" role="status" aria-live="polite">En attente de connexion.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="lab-panel">
+              <h2>Valider le flag</h2>
+              <p>Si l'authentification est contournée, la réponse contient le flag.</p>
+              <form class="flag-form" id="flag-form">
+                <label class="sr-only" for="flag-input">Flag</label>
+                <input class="input" type="text" id="flag-input" placeholder="HACKLAB{...}" autocomplete="off" spellcheck="false">
+                <button class="btn btn--primary" type="submit">Valider le flag</button>
+              </form>
+              <p class="lab-feedback" id="flag-feedback" aria-live="polite"></p>
+
+              <div class="lab-success" id="lab-success" hidden>
+                <h3>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Flag capturé
+                </h3>
+                <span class="flag-value"></span>
+                <p>Vous avez exploité une injection SQL : la valeur saisie a fermé la chaîne de caractères et ajouté une condition toujours vraie, tandis que le reste de la requête a été commenté.</p>
+                <p><strong>Impact :</strong> contournement d'authentification, lecture ou modification de données, parfois exécution de commandes selon les privilèges de la base. <strong>Correctifs :</strong> requêtes préparées avec paramètres liés, ORM correctement utilisé, compte de base à privilèges minimaux, validation des entrées, gestion d'erreurs discrète. Un WAF peut aider, mais ne corrige pas la cause.</p>
+              </div>
+
+              <div class="mt-2">
+                <button class="reset-link" type="button" data-reset-lab>Réinitialiser ce lab</button>
+              </div>
+            </article>
+
+            <nav class="lab-nav" aria-label="Navigation entre les labs">
+              <a href="lab3-idor.html"><span>Lab précédent</span>03 — La facture de trop</a>
+              <a href="lab5-bruteforce.html"><span>Lab suivant</span>05 — Devine mon mot de passe</a>
+            </nav>
+          </div>
+
+          <aside class="lab-sidebar">
+            <div class="side-card">
+              <h2>Fiche du lab</h2>
+              <div class="side-meta"><span>Difficulté</span><strong>Intermédiaire</strong></div>
+              <div class="side-meta"><span>Durée</span><strong>20 min</strong></div>
+              <div class="side-meta"><span>Type</span><strong>Injection SQL</strong></div>
+              <p class="flag-format">HACKLAB{...}</p>
+            </div>
+
+            <div class="side-card">
+              <h2>Indices</h2>
+              <details class="hint">
+                <summary>Indice 1 — Lire la requête</summary>
+                <div class="hint-body"><p>Vos valeurs sont entourées d'apostrophes. Une apostrophe dans le champ peut fermer la chaîne et laisser la suite être interprétée comme du SQL.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 2 — La logique</summary>
+                <div class="hint-body"><p>Ajoutez une condition toujours vraie (<span class="code">'1'='1</span>) puis commentez la fin de la requête avec <span class="code">--</span> ou <span class="code">#</span>.</p></div>
+              </details>
+              <details class="hint">
+                <summary>Indice 3 — Une payload</summary>
+                <div class="hint-body">
+                  <p>Dans le champ utilisateur :</p>
+                  <pre class="code-block">' OR '1'='1' -- </pre>
+                  <button class="btn btn--ghost btn--sm" type="button" data-copy="' OR '1'='1' -- ">Copier la payload</button>
+                </div>
+              </details>
+            </div>
+
+            <div class="side-card">
+              <h2>Le réflexe</h2>
+              <p>Une requête préparée transmet la valeur comme donnée, jamais comme code. C'est la différence fondamentale entre concaténer et paramétrer.</p>
+              <p class="dim" style="font-size:.76rem">Simulation : la base et la logique de détection sont factices.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:0;padding-top:0">
+        <p>© <span data-year>2026</span> HackLab Academy · Lab pédagogique local</p>
+        <p><a href="../labs.html">Tous les labs</a> · <a href="../ethique.html">Cadre légal</a> · <span class="footer-warning">Aucune cible réelle</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/lab-core.js"></script>
+  <script>
+    (function () {
+      var FLAG = "HACKLAB{sql_injection_bypass}";
+      var form = document.getElementById("login-form");
+      var username = document.getElementById("sql-username");
+      var password = document.getElementById("sql-password");
+      var queryPreview = document.getElementById("query-preview");
+      var result = document.getElementById("sql-result");
+      var status = document.getElementById("login-status");
+
+      function updateQuery() {
+        queryPreview.textContent = "SELECT * FROM users WHERE username = '" + username.value + "' AND password = '" + password.value + "';";
+      }
+
+      username.addEventListener("input", updateQuery);
+      password.addEventListener("input", updateQuery);
+      updateQuery();
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var user = username.value;
+        var pass = password.value;
+        var combined = user + " " + pass;
+
+        var hasComment = /(--|#)/.test(user);
+        var hasQuote = user.indexOf("'") !== -1;
+        var tautology = /'\s*or\s*'?1'?\s*=\s*'?1/i.test(combined) || /'\s*or\s+1\s*=\s*1/i.test(combined);
+        var validCredentials = user === "admin" && pass === "S3cret!2026";
+        var bypass = validCredentials || (hasComment && hasQuote) || tautology;
+
+        if (bypass) {
+          result.className = "sql-result is-ok";
+          result.textContent =
+            "> 1 ligne retournée : admin (rôle : administrateur)\n" +
+            "> Authentification contournée.\n" +
+            "> Flag : " + FLAG;
+          status.textContent = "Contourné";
+          status.className = "badge badge--danger";
+        } else {
+          result.className = "sql-result is-bad";
+          result.textContent = "> 0 ligne retournée.\n> Identifiants invalides.";
+          status.textContent = "Échec";
+          status.className = "badge";
+        }
+      });
+    })();
+
+    HLA.initLab({
+      id: "lab4-sqli",
+      flag: "HACKLAB{sql_injection_bypass}",
+      form: "flag-form",
+      input: "flag-input",
+      feedback: "flag-feedback",
+      success: "lab-success"
+    });
+  </script>
+</body>
+</html>
