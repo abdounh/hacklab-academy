@@ -42,6 +42,12 @@ function Get-StatusCode {
   return 0
 }
 
+Write-Host "Verification du jeton..."
+$me = Invoke-Api GET "$api/user"
+if ($me.login -ne $owner) {
+  throw "Le jeton appartient a '$($me.login)' mais le compte demande est '$owner'. Relancez le script avec '$($me.login)'."
+}
+
 Write-Host "1/5 Verification du depot $owner/$repo..."
 $exists = $false
 try {
