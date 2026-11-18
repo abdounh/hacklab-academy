@@ -2,6 +2,11 @@
 
 Site pédagogique francophone pour apprendre le pentest de zéro à un niveau professionnel. Le parcours combine cours externes vérifiés, une progression suivie localement et six labs vulnérables exécutés uniquement dans le navigateur.
 
+**Site en ligne :** <https://abdounh.github.io/hacklab-academy/>
+**Dépôt :** <https://github.com/abdounh/hacklab-academy>
+
+[![Déploiement GitHub Pages](https://github.com/abdounh/hacklab-academy/actions/workflows/pages.yml/badge.svg)](https://github.com/abdounh/hacklab-academy/actions/workflows/pages.yml)
+
 ## Contenu
 
 - **6 pages** : accueil, parcours, catalogue de cours, labs, ressources, éthique et cadre légal.
