@@ -18,6 +18,10 @@ $token = [Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr)
 [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
 if ([string]::IsNullOrWhiteSpace($token)) { throw "Jeton vide : publication annulee." }
 
+if (-not (Test-Path "index.html") -or -not (Test-Path "labs")) {
+  throw "Lancez ce script depuis le dossier du site (celui qui contient index.html et le dossier labs)."
+}
+
 $headers = @{
   Authorization = "Bearer $token"
   Accept = "application/vnd.github+json"
@@ -87,9 +91,12 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "3/5 Envoi du code source..."
 # Authentification en memoire uniquement : le jeton n'est pas stocke dans .git/config.
 $pair = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$owner`:$token"))
+$env:GIT_TERMINAL_PROMPT = "0"
 git -c "http.extraheader=AUTHORIZATION: Basic $pair" push -u origin main
-if ($LASTEXITCODE -ne 0) {
-  throw "Le push a echoue. Verifiez que le jeton possede les droits repo + workflow."
+$pushExit = $LASTEXITCODE
+Remove-Item Env:GIT_TERMINAL_PROMPT -ErrorAction SilentlyContinue
+if ($pushExit -ne 0) {
+  throw "Le push a echoue. Verifiez que le depot distant est vide et que le jeton possede les droits repo + workflow."
 }
 $pair = $null
 
@@ -115,8 +122,9 @@ $siteUrl = "https://$owner.github.io/$repo/"
 for ($i = 0; $i -lt 30; $i++) {
   Start-Sleep -Seconds 10
   try {
-    $runs = Invoke-Api GET "$repoUri/actions/workflows/pages.yml/runs?per_page=1"
-    $run = $runs.workflow_runs[0]
+    $runs = Invoke-Api GET "$repoUri/actions/workflows/pages.yml/runs?per_page=10"
+    $run = $runs.workflow_runs | Where-Object { $_.event -eq "workflow_dispatch" } | Select-Object -First 1
+    if (-not $run) { $run = $runs.workflow_runs[0] }
     if ($run.status -eq "completed") {
       if ($run.conclusion -eq "success") {
         Write-Host ""
@@ -135,3 +143,4 @@ for ($i = 0; $i -lt 30; $i++) {
 }
 
 $token = $null
+$secure = $null

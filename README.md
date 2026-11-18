@@ -66,6 +66,8 @@ Voir [SECURITY.md](SECURITY.md) pour la politique de signalement.
 
 ## Publier sur GitHub Pages
 
+Guide détaillé, vérifications et dépannage : [GITHUB.md](GITHUB.md).
+
 ### Méthode automatique en une commande
 
 Le script `publier-github.ps1` crée le dépôt public, pousse le code, active GitHub Pages et suit le déploiement. Il ne stocke jamais le jeton sur le disque.
