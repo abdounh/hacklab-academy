@@ -32,6 +32,12 @@ Le jeton ne doit jamais être collé dans un fichier, un commit, une conversatio
 
 ## 3. Méthode automatique (recommandée)
 
+### Option rapide : double-clic
+
+Double-cliquer sur `publier-github.cmd` dans le dossier du projet. Une console s'ouvre et lance le script.
+
+### Option PowerShell
+
 Ouvrir PowerShell dans le dossier du site :
 
 ```powershell

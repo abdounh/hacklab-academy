@@ -49,6 +49,7 @@ python -m http.server 8080
 │   ├── lab5-bruteforce.html
 │   └── lab6-crypto.html
 ├── publier-github.ps1
+├── publier-github.cmd
 └── .github/workflows/pages.yml
 ```
 
@@ -78,6 +79,8 @@ Le script `publier-github.ps1` crée le dépôt public, pousse le code, active G
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\publier-github.ps1
 ```
+
+Ou double-cliquez sur `publier-github.cmd`.
 
 3. Saisissez votre compte (`abdounh` par défaut), le nom du dépôt (`hacklab-academy` par défaut), puis collez le jeton dans l'invite masquée.
 
