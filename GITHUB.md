@@ -26,7 +26,7 @@ Guide complet pour mettre le site en ligne sur un dépôt GitHub public, avec d�
 3. Nom : `hacklab-academy-publish`.
 4. Expiration : 7 jours (suffisant pour la mise en ligne).
 5. Cocher `repo` et `workflow`.
-6. Cliquer sur **Generate token**, puis copier le jeton `ghp_...` immédiatement.
+6. Cliquer sur **Generate token**, puis copier le jeton affiché (il commence par `ghp_`) immédiatement.
 
 Le jeton ne doit jamais être collé dans un fichier, un commit, une conversation ou un dépôt. Le script le demande dans une invite masquée et ne l'écrit pas sur le disque.
 
@@ -45,7 +45,7 @@ Répondre aux trois invites :
 | --- | --- |
 | Compte GitHub | `abdounh` ou votre nom d'utilisateur exact |
 | Nom du dépôt | `hacklab-academy` |
-| Jeton GitHub | coller le `ghp_...` (l'invite est masquée) |
+| Jeton GitHub | coller le jeton affiché (l'invite est masquée) |
 
 Le script effectue alors :
 
